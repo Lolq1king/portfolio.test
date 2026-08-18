@@ -9,7 +9,92 @@ export class Bookshelf {
     this.group.rotation.y = -0.42; // Angled elegantly towards the camera
 
     this.interactiveObjects = [];
-    this.booksData = []; // Empty bookshelf
+    this.booksData = [
+      {
+        id: 'szaman-1',
+        title: 'Droga Szamana. Etap 1: Początek',
+        author: 'Wasilij Machanienko',
+        shelf: 3,
+        xOffset: -0.42,
+        thickness: 0.11,
+        color: 0x0d9488,
+        icon: '🔮',
+        desc: 'Tom 1 popularnej serii LitRPG. Skazany Mahan trafia do wirtualnego świata Barliony jako Szaman i rozpoczyna walkę o przetrwanie.',
+        extraInfo: 'Cykl: Droga Szamana (Tom 1)'
+      },
+      {
+        id: 'szaman-2',
+        title: 'Droga Szamana. Etap 2: Gambit Kartosa',
+        author: 'Wasilij Machanienko',
+        shelf: 3,
+        xOffset: -0.28,
+        thickness: 0.11,
+        color: 0xbe123c,
+        icon: '♟️',
+        desc: 'Tom 2. Rozwój unikalnej klasy Szamana, intrygi w kopalniach Pryzmy oraz rywalizacja z gildiami Barliony.',
+        extraInfo: 'Cykl: Droga Szamana (Tom 2)'
+      },
+      {
+        id: 'szaman-3',
+        title: 'Droga Szamana. Etap 3: Tajemnica Mrocznego Lasu',
+        author: 'Wasilij Machanienko',
+        shelf: 3,
+        xOffset: -0.14,
+        thickness: 0.11,
+        color: 0x15803d,
+        icon: '🌲',
+        desc: 'Tom 3. Wyprawa w niebezpieczne rejony Mrocznego Lasu, poszukiwanie rzadkich składników i potężnych duchów.',
+        extraInfo: 'Cykl: Droga Szamana (Tom 3)'
+      },
+      {
+        id: 'szaman-4',
+        title: 'Droga Szamana. Etap 4: Zamek Widmo',
+        author: 'Wasilij Machanienko',
+        shelf: 3,
+        xOffset: 0.00,
+        thickness: 0.11,
+        color: 0x7e22ce,
+        icon: '🏰',
+        desc: 'Tom 4. Epickie rajdy, oblężenia twierdz i walka o kontrolę nad strategicznymi zasobami świata gry.',
+        extraInfo: 'Cykl: Droga Szamana (Tom 4)'
+      },
+      {
+        id: 'szaman-5',
+        title: 'Droga Szamana. Etap 5: Szachy Karmadonta',
+        author: 'Wasilij Machanienko',
+        shelf: 2,
+        xOffset: -0.42,
+        thickness: 0.11,
+        color: 0xd97706,
+        icon: '♚',
+        desc: 'Tom 5. Złożone rozgrywki polityczne najwyższego szczebla, gdzie każdy ruch może zaważyć o losie Barliony.',
+        extraInfo: 'Cykl: Droga Szamana (Tom 5)'
+      },
+      {
+        id: 'szaman-6',
+        title: 'Droga Szamana. Etap 6: Nowy początek',
+        author: 'Wasilij Machanienko',
+        shelf: 2,
+        xOffset: -0.28,
+        thickness: 0.11,
+        color: 0x4338ca,
+        icon: '✨',
+        desc: 'Tom 6. Próba odbudowania pozycji, pokonanie własnych ograniczeń i ponowne sięgnięcie po potęgę Szamana.',
+        extraInfo: 'Cykl: Droga Szamana (Tom 6)'
+      },
+      {
+        id: 'szaman-7',
+        title: 'Droga Szamana. Etap 7: Na tropie stwórcy',
+        author: 'Wasilij Machanienko',
+        shelf: 2,
+        xOffset: -0.14,
+        thickness: 0.11,
+        color: 0x0284c7,
+        icon: '☸️',
+        desc: 'Tom 7. Kulminacja i wielki finał siedmiotomowej serii LitRPG o przygodach Mahana w świecie Barliony.',
+        extraInfo: 'Cykl: Droga Szamana (Tom 7)'
+      }
+    ];
 
     this.createBookshelfFrame();
     this.createBooks();
