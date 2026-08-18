@@ -210,31 +210,31 @@ export class DeskObjectRegistry {
 
     if (this.atmosphereIndex === 0) {
       // 1. Midnight Silvery Full Moon (Srebrzysta Noc)
-      this.sceneManager.scene.fog.color.setHex(0x0c0b1a);
-      this.sceneManager.scene.background.setHex(0x060913);
-      this.sceneManager.moonLight.color.setHex(0xa5c8ff);
-      this.sceneManager.ambientLight.color.setHex(0x384a75);
+      this.sceneManager.scene.fog.color.setHex(0x18243e);
+      this.sceneManager.scene.background.setHex(0x141f38);
+      this.sceneManager.moonLight.color.setHex(0xcde0ff);
+      this.sceneManager.ambientLight.color.setHex(0x7896d8);
       return '🔮 Kolory Scenerii: Srebrzysta Noc Księżycowa';
     } else if (this.atmosphereIndex === 1) {
       // 2. Crimson Blood Moon (Krwawy Zmierzch)
-      this.sceneManager.scene.fog.color.setHex(0x2a0815);
-      this.sceneManager.scene.background.setHex(0x15040a);
-      this.sceneManager.moonLight.color.setHex(0xff3355);
-      this.sceneManager.ambientLight.color.setHex(0x551525);
+      this.sceneManager.scene.fog.color.setHex(0x3d1424);
+      this.sceneManager.scene.background.setHex(0x280d17);
+      this.sceneManager.moonLight.color.setHex(0xff5577);
+      this.sceneManager.ambientLight.color.setHex(0x882844);
       return '🔮 Kolory Scenerii: Krwawy Zmierzch';
     } else if (this.atmosphereIndex === 2) {
       // 3. Deep Eldritch Emerald Mist (Szmaragdowa Mgła)
-      this.sceneManager.scene.fog.color.setHex(0x061c16);
-      this.sceneManager.scene.background.setHex(0x030d0a);
-      this.sceneManager.moonLight.color.setHex(0x00ffcc);
-      this.sceneManager.ambientLight.color.setHex(0x124235);
+      this.sceneManager.scene.fog.color.setHex(0x12362c);
+      this.sceneManager.scene.background.setHex(0x0c241d);
+      this.sceneManager.moonLight.color.setHex(0x33ffe6);
+      this.sceneManager.ambientLight.color.setHex(0x246654);
       return '🔮 Kolory Scenerii: Szmaragdowa Mgła';
     } else {
       // 4. Royal Violet Eclipse (Fioletowe Zaćmienie)
-      this.sceneManager.scene.fog.color.setHex(0x1b0a2a);
-      this.sceneManager.scene.background.setHex(0x0e0417);
-      this.sceneManager.moonLight.color.setHex(0xb555ff);
-      this.sceneManager.ambientLight.color.setHex(0x3b1654);
+      this.sceneManager.scene.fog.color.setHex(0x2c1540);
+      this.sceneManager.scene.background.setHex(0x1e0e2c);
+      this.sceneManager.moonLight.color.setHex(0xc877ff);
+      this.sceneManager.ambientLight.color.setHex(0x602b85);
       return '🔮 Kolory Scenerii: Fioletowe Zaćmienie';
     }
   }

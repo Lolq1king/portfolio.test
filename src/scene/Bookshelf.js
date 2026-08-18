@@ -198,16 +198,16 @@ export class Bookshelf {
     const height = 3.4;
     const depth = 0.55;
 
-    // Dark Oak Wood Material
+    // Warm Oak Wood Material (Brightened for crisp visibility)
     const woodMat = new THREE.MeshStandardMaterial({
-      color: 0x2b180d,
-      roughness: 0.8,
+      color: 0x4a2c1b,
+      roughness: 0.7,
       metalness: 0.1
     });
 
     const trimMat = new THREE.MeshStandardMaterial({
-      color: 0x1c0f08,
-      roughness: 0.9
+      color: 0x2e190f,
+      roughness: 0.8
     });
 
     // 1. Two Tall Side Panels

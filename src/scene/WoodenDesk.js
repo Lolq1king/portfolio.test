@@ -16,21 +16,21 @@ export class WoodenDesk {
 
     const topGeo = new THREE.BoxGeometry(topWidth, topHeight, topDepth);
 
-    // Procedural pixelated oak wood texture
+    // Procedural pixelated oak wood texture (Brightened)
     const canvas = document.createElement('canvas');
     canvas.width = 64;
     canvas.height = 64;
     const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#3d2314'; // Oak wood base
+    ctx.fillStyle = '#5c3720'; // Brightened warm oak wood base
     ctx.fillRect(0, 0, 64, 64);
 
     // Wood grain lines
-    ctx.fillStyle = '#2b170c';
+    ctx.fillStyle = '#422617';
     for (let y = 0; y < 64; y += 4) {
       ctx.fillRect(0, y + (Math.random() > 0.5 ? 1 : 0), 64, 1);
     }
     // Knots and dark streaks
-    ctx.fillStyle = '#1c0e07';
+    ctx.fillStyle = '#2d180d';
     ctx.fillRect(12, 18, 6, 3);
     ctx.fillRect(44, 40, 8, 4);
 

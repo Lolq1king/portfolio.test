@@ -20,8 +20,8 @@ export class SceneManager {
 
   initScene() {
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x060913); // Deep night navy
-    this.scene.fog = new THREE.FogExp2(0x0c0b1a, 0.035); // Dark purple fantasy fog
+    this.scene.background = new THREE.Color(0x141f38); // Brightened twilight night sky
+    this.scene.fog = new THREE.FogExp2(0x18243e, 0.016); // Lighter, thinner fantasy fog
 
     this.camera = new THREE.PerspectiveCamera(
       45,
@@ -39,18 +39,22 @@ export class SceneManager {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.1;
+    this.renderer.toneMappingExposure = 1.85; // Significantly brightened exposure
 
     this.container.appendChild(this.renderer.domElement);
   }
 
   initLights() {
-    // 1. Ambient Full Moonlight Fill (Bright silvery blue)
-    this.ambientLight = new THREE.AmbientLight(0x384a75, 2.5);
+    // 1. Ambient Full Moonlight Fill (Bright silvery blue fill)
+    this.ambientLight = new THREE.AmbientLight(0x7896d8, 4.8);
     this.scene.add(this.ambientLight);
 
-    // 2. Full Moonlight Beam
-    this.moonLight = new THREE.DirectionalLight(0xa5c8ff, 4.2);
+    // 2. Soft Sky & Ground Hemisphere Light (Darker ground bounce)
+    this.hemiLight = new THREE.HemisphereLight(0xbde0ff, 0x1f2b1c, 1.8);
+    this.scene.add(this.hemiLight);
+
+    // 3. Full Moonlight Beam
+    this.moonLight = new THREE.DirectionalLight(0xcde0ff, 6.8);
     this.moonLight.position.set(12, 22, -10);
     this.moonLight.castShadow = true;
     this.moonLight.shadow.mapSize.width = 1024;
@@ -63,24 +67,29 @@ export class SceneManager {
     this.moonLight.shadow.camera.bottom = -12;
     this.scene.add(this.moonLight);
 
-    // 3. Glowing Full Moon Disc in the sky
+    // 4. Glowing Full Moon Disc in the sky
     this.initFullMoon();
 
-    // 4. Warm Desk Lamp Light
-    this.lampLight = new THREE.PointLight(0xff9933, 3.5, 8);
+    // 5. Warm Desk Lamp Light
+    this.lampLight = new THREE.PointLight(0xffb347, 5.5, 12);
     this.lampLight.position.set(-1.2, 2.8, 0.2);
     this.lampLight.castShadow = true;
     this.scene.add(this.lampLight);
 
-    // 5. CRT Monitor Glowing Light
-    this.monitorLight = new THREE.PointLight(0x00f3ff, 2.8, 6);
+    // 6. CRT Monitor Glowing Light
+    this.monitorLight = new THREE.PointLight(0x38f5ff, 4.5, 10);
     this.monitorLight.position.set(0, 2.5, 0.4);
     this.scene.add(this.monitorLight);
 
-    // 6. Bioluminescent Mushroom Light
-    this.shroomLight = new THREE.PointLight(0x00ffcc, 1.8, 5);
+    // 7. Bioluminescent Mushroom Light
+    this.shroomLight = new THREE.PointLight(0x55ffdd, 3.5, 8);
     this.shroomLight.position.set(2.5, 0.5, 2.0);
     this.scene.add(this.shroomLight);
+
+    // 8. Dedicated Warm Bookshelf Illumination
+    this.bookshelfLight = new THREE.PointLight(0xffe5b4, 5.8, 12);
+    this.bookshelfLight.position.set(3.5, 3.2, 2.5);
+    this.scene.add(this.bookshelfLight);
   }
 
   initFullMoon() {

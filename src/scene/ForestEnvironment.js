@@ -19,14 +19,14 @@ export class ForestEnvironment {
     canvas.width = 64;
     canvas.height = 64;
     const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#0a1a14'; // Dark emerald base
+    ctx.fillStyle = '#05120d'; // Darker emerald base for ground
     ctx.fillRect(0, 0, 64, 64);
     
     // Pixel details
     for (let i = 0; i < 200; i++) {
       const x = Math.floor(Math.random() * 64);
       const y = Math.floor(Math.random() * 64);
-      const colors = ['#082218', '#122e23', '#06130e', '#1a3c2c', '#002b1f'];
+      const colors = ['#03100a', '#0a1a13', '#020906', '#0f241a', '#00140e'];
       ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
       ctx.fillRect(x, y, 2, 2);
     }
@@ -40,7 +40,8 @@ export class ForestEnvironment {
 
     const groundMaterial = new THREE.MeshStandardMaterial({
       map: groundTexture,
-      roughness: 0.9,
+      color: 0x889988, // Slightly darkened tint for ground surface
+      roughness: 0.95,
       metalness: 0.1
     });
 
