@@ -12,7 +12,7 @@ export class CameraController {
     this.overviewPos = new THREE.Vector3(0, 5.2, 13.0);
     this.overviewTarget = new THREE.Vector3(0, 2.2, -1.0);
 
-    this.monitorPos = new THREE.Vector3(0, 2.46, 1.55);
+    this.monitorPos = new THREE.Vector3(0, 2.65, 2.6);
     this.monitorTarget = new THREE.Vector3(0, 2.46, 0.51);
 
     this.currentTarget = this.overviewTarget.clone();
