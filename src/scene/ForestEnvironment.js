@@ -62,9 +62,9 @@ export class ForestEnvironment {
       const zL = -4.0 - Math.random() * 6.0;
       treePositions.push({ x: xL, z: zL, scale: 0.85 + Math.random() * 0.55 });
 
-      // Rear Right
-      const xR = 4.5 + Math.random() * 5.5;
-      const zR = -4.0 - Math.random() * 6.0;
+      // Rear Right (Cleared so pine branches don't hang over bookshelf)
+      const xR = 6.5 + Math.random() * 4.0;
+      const zR = -4.5 - Math.random() * 5.0;
       treePositions.push({ x: xR, z: zR, scale: 0.85 + Math.random() * 0.55 });
     }
 
@@ -76,10 +76,10 @@ export class ForestEnvironment {
       const zLeft = (Math.random() * 7) - 1.5;
       treePositions.push({ x: xLeft, z: zLeft, scale: 0.9 + Math.random() * 0.5 });
 
-      // Right side
-      const xRight = 5.0 + Math.random() * 4.0;
+      // Right side (Pushed to x >= 7.2 to guarantee 100% visibility for the bookshelf)
+      const xRight = 7.2 + Math.random() * 3.2;
       const zRight = (Math.random() * 7) - 1.5;
-      treePositions.push({ x: xRight, z: zRight, scale: 0.9 + Math.random() * 0.5 });
+      treePositions.push({ x: xRight, z: zRight, scale: 0.85 + Math.random() * 0.45 });
     }
 
     treePositions.forEach((pos) => {

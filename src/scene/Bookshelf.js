@@ -4,12 +4,12 @@ export class Bookshelf {
   constructor(scene) {
     this.scene = scene;
     this.group = new THREE.Group();
-    // Positioned to the right of the desk behind the bioluminescent mushrooms
-    this.group.position.set(3.4, 0, 0.4);
-    this.group.rotation.y = -0.35; // Angled slightly towards the camera
+    // Positioned prominently to the right of the desk, 100% visible and unobstructed
+    this.group.position.set(3.5, 0, 0.8);
+    this.group.rotation.y = -0.42; // Angled elegantly towards the camera
 
     this.interactiveObjects = [];
-    this.booksData = []; // Empty bookshelf ready for user-specified books
+    this.booksData = []; // Empty bookshelf
 
     this.createBookshelfFrame();
     this.createBooks();
