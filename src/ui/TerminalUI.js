@@ -64,6 +64,10 @@ export class TerminalUI {
     if (this.cameraController) {
       this.cameraController.zoomToOverview();
     }
+    const cameraLabel = document.getElementById('camera-view-label');
+    if (cameraLabel) {
+      cameraLabel.textContent = 'SKUPIENIE: LAS';
+    }
   }
 
   openItemModal(data) {

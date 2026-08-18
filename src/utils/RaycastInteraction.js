@@ -28,7 +28,7 @@ export class RaycastInteraction {
   }
 
   onPointerMove(event) {
-    if (!this.enabled) {
+    if (!this.enabled || (event && event.target && event.target.closest('#crt-modal, #item-modal, .hud-header'))) {
       this.hideTooltip();
       return;
     }
@@ -93,6 +93,12 @@ export class RaycastInteraction {
 
   onPointerClick(event) {
     if (!this.enabled || !this.hoveredObject) return;
+
+    // Do NOT trigger 3D raycast click if user clicked an HTML UI button or modal overlay
+    if (event && event.target && event.target.closest('#crt-modal, #item-modal, .hud-header, button')) {
+      return;
+    }
+
     if (this.onObjectClick) {
       this.onObjectClick(this.hoveredObject);
     }
