@@ -31,14 +31,16 @@ export class DarkCastle {
 
   createCastleStructure() {
     const stoneMat = new THREE.MeshStandardMaterial({
-      color: 0x0b101c, // Obsidian castle walls
-      roughness: 0.85,
+      color: 0x182338, // Gothic obsidian stone catching silvery moonlight
+      roughness: 0.65,
+      metalness: 0.2,
       flatShading: true
     });
 
     const roofMat = new THREE.MeshStandardMaterial({
-      color: 0x05070e, // Dark roof slate
-      roughness: 0.9,
+      color: 0x0f1624, // Slate roof tile catching blue moon reflections
+      roughness: 0.7,
+      metalness: 0.2,
       flatShading: true
     });
 
@@ -146,13 +148,18 @@ export class DarkCastle {
   }
 
   createAuraLight() {
-    // Point light behind castle to create dramatic backdrop glow
+    // 1. Direct Silvery Moonlight Beam illuminating the Castle front
+    const castleMoonlight = new THREE.DirectionalLight(0xb8d4ff, 4.5);
+    castleMoonlight.position.set(8, 16, 12);
+    this.group.add(castleMoonlight);
+
+    // 2. Point light behind castle to create dramatic backdrop silhouette glow
     const castleLight = new THREE.PointLight(0x7397cd, 4.0, 30);
     castleLight.position.set(0, 9.0, -3.0);
     this.group.add(castleLight);
 
-    // Warm glow light emitting from the castle windows
-    const windowGlowLight = new THREE.PointLight(0xff9900, 3.0, 18);
+    // 3. Warm glow light emitting from the castle windows
+    const windowGlowLight = new THREE.PointLight(0xff9900, 3.5, 18);
     windowGlowLight.position.set(0, 6.5, 2.0);
     this.group.add(windowGlowLight);
     this.windowGlowLight = windowGlowLight;
