@@ -93,6 +93,80 @@ export class Bookshelf {
         icon: '☸️',
         desc: 'Tom 7. Kulminacja i wielki finał siedmiotomowej serii LitRPG o przygodach Mahana w świecie Barliony.',
         extraInfo: 'Cykl: Droga Szamana (Tom 7 z 7)'
+      },
+      // --- Serie 2: Świat Przeistoczonych (Półka 2) ---
+      {
+        id: 'przeistoczeni-1',
+        title: 'Świat Przeistoczonych. Tom 1: Bez prawa do błędu',
+        author: 'Wasilij Machanienko',
+        shelf: 2,
+        xOffset: -0.24,
+        thickness: 0.11,
+        color: 0x991b1b,
+        icon: '⚠️',
+        desc: 'Tom 1 serii Świat Przeistoczonych. Ziemia zostaje włączona w obszar gry obcych, a ludzie muszą walczyć o przetrwanie w nowej, brutalnej rzeczywistości.',
+        extraInfo: 'Cykl: Świat Przeistoczonych (Tom 1 z 3)'
+      },
+      {
+        id: 'przeistoczeni-2',
+        title: 'Świat Przeistoczonych. Tom 2: Perła południa',
+        author: 'Wasilij Machanienko',
+        shelf: 2,
+        xOffset: -0.08,
+        thickness: 0.11,
+        color: 0xd97706,
+        icon: '💎',
+        desc: 'Tom 2. Mark Cather kontynuuje zmagania w przekształconym świecie, dążąc do opanowania kluczowych przyczółków i unikalnych zdolności.',
+        extraInfo: 'Cykl: Świat Przeistoczonych (Tom 2 z 3)'
+      },
+      {
+        id: 'przeistoczeni-3',
+        title: 'Świat Przeistoczonych. Tom 3: Spersonifikowane noa',
+        author: 'Wasilij Machanienko',
+        shelf: 2,
+        xOffset: 0.08,
+        thickness: 0.11,
+        color: 0x581c87,
+        icon: '⚡',
+        desc: 'Tom 3. Kulminacja walki z najeźdźcami, odkrywanie tajemnic wyższej energii Noa oraz ostateczna próba przetrwania ludzkości.',
+        extraInfo: 'Cykl: Świat Przeistoczonych (Tom 3 z 3)'
+      },
+      // --- Serie 3: Level Up (Półka 1) ---
+      {
+        id: 'levelup-1',
+        title: 'Level Up. Tom 1: Re-start',
+        author: 'Dan Sugralinow',
+        shelf: 1,
+        xOffset: -0.24,
+        thickness: 0.11,
+        color: 0x06b6d4,
+        icon: '🎮',
+        desc: 'Tom 1 serii Level Up. Trzydziestoletni Phil otrzymuje niezwykły interfejs rzeczywistości z paskami statystyk i poziomów doświadczenia.',
+        extraInfo: 'Cykl: Level Up (Tom 1 z 3)'
+      },
+      {
+        id: 'levelup-2',
+        title: 'Level Up. Tom 2: Bohater',
+        author: 'Dan Sugralinow',
+        shelf: 1,
+        xOffset: -0.08,
+        thickness: 0.11,
+        color: 0x16a34a,
+        icon: '🆙',
+        desc: 'Tom 2. Rozwijanie umiejętności w prawdziwym świecie, pokonywanie kolejnych poziomów trudności i stawianie czoła nowym wyzwaniom.',
+        extraInfo: 'Cykl: Level Up (Tom 2 z 3)'
+      },
+      {
+        id: 'levelup-3',
+        title: 'Level Up. Tom 3: Próba',
+        author: 'Dan Sugralinow',
+        shelf: 1,
+        xOffset: 0.08,
+        thickness: 0.11,
+        color: 0xdc2626,
+        icon: '🏆',
+        desc: 'Tom 3. Ostateczny test możliwości Phila, wielkie starcie oraz próba zrozumienia natury tajemniczego interfejsu.',
+        extraInfo: 'Cykl: Level Up (Tom 3 z 3)'
       }
     ];
 
