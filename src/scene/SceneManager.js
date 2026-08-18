@@ -45,39 +45,62 @@ export class SceneManager {
   }
 
   initLights() {
-    // 1. Ambient Moonlight
-    this.ambientLight = new THREE.AmbientLight(0x232946, 1.5);
+    // 1. Ambient Full Moonlight Fill (Bright silvery blue)
+    this.ambientLight = new THREE.AmbientLight(0x384a75, 2.5);
     this.scene.add(this.ambientLight);
 
-    // 2. Moonlight Directional
-    this.moonLight = new THREE.DirectionalLight(0x7397cd, 2.2);
-    this.moonLight.position.set(10, 20, -10);
+    // 2. Full Moonlight Beam
+    this.moonLight = new THREE.DirectionalLight(0xa5c8ff, 4.2);
+    this.moonLight.position.set(12, 22, -10);
     this.moonLight.castShadow = true;
     this.moonLight.shadow.mapSize.width = 1024;
     this.moonLight.shadow.mapSize.height = 1024;
     this.moonLight.shadow.camera.near = 0.5;
     this.moonLight.shadow.camera.far = 40;
-    this.moonLight.shadow.camera.left = -10;
-    this.moonLight.shadow.camera.right = 10;
-    this.moonLight.shadow.camera.top = 10;
-    this.moonLight.shadow.camera.bottom = -10;
+    this.moonLight.shadow.camera.left = -12;
+    this.moonLight.shadow.camera.right = 12;
+    this.moonLight.shadow.camera.top = 12;
+    this.moonLight.shadow.camera.bottom = -12;
     this.scene.add(this.moonLight);
 
-    // 3. Warm Desk Lamp / Lantern Light
+    // 3. Glowing Full Moon Disc in the sky
+    this.initFullMoon();
+
+    // 4. Warm Desk Lamp Light
     this.lampLight = new THREE.PointLight(0xff9933, 3.5, 8);
     this.lampLight.position.set(-1.2, 2.8, 0.2);
     this.lampLight.castShadow = true;
     this.scene.add(this.lampLight);
 
-    // 4. CRT Monitor Glowing Light (Cyan/Phosphor Green)
+    // 5. CRT Monitor Glowing Light
     this.monitorLight = new THREE.PointLight(0x00f3ff, 2.8, 6);
     this.monitorLight.position.set(0, 2.5, 0.4);
     this.scene.add(this.monitorLight);
 
-    // 5. Bioluminescent Mushroom Light
+    // 6. Bioluminescent Mushroom Light
     this.shroomLight = new THREE.PointLight(0x00ffcc, 1.8, 5);
     this.shroomLight.position.set(2.5, 0.5, 2.0);
     this.scene.add(this.shroomLight);
+  }
+
+  initFullMoon() {
+    // 3D Glowing Full Moon high in the night sky
+    const moonGeo = new THREE.SphereGeometry(2.4, 20, 20);
+    const moonMat = new THREE.MeshStandardMaterial({
+      color: 0xe6f2ff,
+      emissive: 0xd9ecff,
+      emissiveIntensity: 1.6,
+      roughness: 0.2
+    });
+
+    const moonMesh = new THREE.Mesh(moonGeo, moonMat);
+    moonMesh.position.set(6.5, 14.5, -21.0);
+    this.scene.add(moonMesh);
+
+    // Soft moon glow point light
+    const moonGlow = new THREE.PointLight(0x99ccff, 3.5, 45);
+    moonGlow.position.set(6.5, 14.5, -19.0);
+    this.scene.add(moonGlow);
   }
 
   initPostProcessing() {

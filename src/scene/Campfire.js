@@ -4,7 +4,7 @@ export class Campfire {
   constructor(scene) {
     this.scene = scene;
     this.group = new THREE.Group();
-    this.group.position.set(-3.0, 0, 0.6); // Left side of the wooden desk
+    this.group.position.set(-3.8, 0, -1.2); // Positioned behind and left of the wooden desk
 
     this.initStones();
     this.initLogs();
@@ -16,20 +16,20 @@ export class Campfire {
   }
 
   initStones() {
-    // Ring of 8 small campfire rocks
+    // Ring of 10 larger campfire rocks
     const stoneMat = new THREE.MeshStandardMaterial({
       color: 0x1e2430,
       roughness: 0.9,
       flatShading: true
     });
 
-    const count = 8;
-    const radius = 0.55;
+    const count = 10;
+    const radius = 0.85;
     for (let i = 0; i < count; i++) {
       const angle = (i / count) * Math.PI * 2;
-      const rockGeo = new THREE.DodecahedronGeometry(0.12 + Math.random() * 0.04, 0);
+      const rockGeo = new THREE.DodecahedronGeometry(0.18 + Math.random() * 0.06, 0);
       const stone = new THREE.Mesh(rockGeo, stoneMat);
-      stone.position.set(Math.cos(angle) * radius, 0.08, Math.sin(angle) * radius);
+      stone.position.set(Math.cos(angle) * radius, 0.1, Math.sin(angle) * radius);
       stone.rotation.set(Math.random(), Math.random(), Math.random());
       stone.castShadow = true;
       stone.receiveShadow = true;
@@ -38,78 +38,78 @@ export class Campfire {
   }
 
   initLogs() {
-    // 3 crossed wooden logs
+    // 4 larger crossed wooden logs
     const logMat = new THREE.MeshStandardMaterial({
       color: 0x1b110a,
       roughness: 0.95
     });
 
-    for (let i = 0; i < 3; i++) {
-      const logGeo = new THREE.CylinderGeometry(0.06, 0.07, 0.7, 6);
+    for (let i = 0; i < 4; i++) {
+      const logGeo = new THREE.CylinderGeometry(0.09, 0.11, 1.0, 6);
       const log = new THREE.Mesh(logGeo, logMat);
-      log.position.y = 0.12;
+      log.position.y = 0.16;
       log.rotation.z = Math.PI * 0.4;
-      log.rotation.y = (i / 3) * Math.PI;
+      log.rotation.y = (i / 4) * Math.PI;
       log.castShadow = true;
       this.group.add(log);
     }
   }
 
   initFlames() {
-    // Flame meshes
+    // Larger Flame meshes
     const flameMat = new THREE.MeshStandardMaterial({
-      color: 0xff5500,
+      color: 0xff4500,
       emissive: 0xff6600,
-      emissiveIntensity: 1.0,
+      emissiveIntensity: 1.2,
       transparent: true,
       opacity: 0.9,
       flatShading: true
     });
 
-    this.flameCone1 = new THREE.Mesh(new THREE.ConeGeometry(0.35, 0.75, 5), flameMat);
-    this.flameCone1.position.y = 0.45;
+    this.flameCone1 = new THREE.Mesh(new THREE.ConeGeometry(0.65, 1.4, 6), flameMat);
+    this.flameCone1.position.y = 0.8;
 
-    this.flameCone2 = new THREE.Mesh(new THREE.ConeGeometry(0.25, 0.6, 5), flameMat);
-    this.flameCone2.position.set(0.05, 0.4, -0.05);
+    this.flameCone2 = new THREE.Mesh(new THREE.ConeGeometry(0.48, 1.1, 6), flameMat);
+    this.flameCone2.position.set(0.1, 0.65, -0.1);
 
     const innerFlameMat = new THREE.MeshStandardMaterial({
-      color: 0xffdd00,
+      color: 0xffea00,
       emissive: 0xffcc00,
-      emissiveIntensity: 1.2,
+      emissiveIntensity: 1.5,
       flatShading: true
     });
 
-    this.flameInner = new THREE.Mesh(new THREE.ConeGeometry(0.18, 0.45, 5), innerFlameMat);
-    this.flameInner.position.y = 0.35;
+    this.flameInner = new THREE.Mesh(new THREE.ConeGeometry(0.32, 0.85, 6), innerFlameMat);
+    this.flameInner.position.y = 0.6;
 
     this.group.add(this.flameCone1, this.flameCone2, this.flameInner);
   }
 
   initLight() {
-    // Warm campfire light illuminating the forest and left side of desk
-    this.fireLight = new THREE.PointLight(0xff7700, 4.5, 12);
-    this.fireLight.position.set(0, 0.6, 0);
+    // Powerful warm campfire light illuminating the forest clearing
+    this.fireLight = new THREE.PointLight(0xff6600, 7.5, 16);
+    this.fireLight.position.set(0, 1.0, 0);
     this.fireLight.castShadow = true;
-    this.fireLight.shadow.mapSize.width = 512;
-    this.fireLight.shadow.mapSize.height = 512;
+    this.fireLight.shadow.mapSize.width = 1024;
+    this.fireLight.shadow.mapSize.height = 1024;
     this.group.add(this.fireLight);
   }
 
   initEmbers() {
-    // Rising fire ember particles
-    const emberCount = 35;
+    // Larger cluster of rising fire ember particles
+    const emberCount = 65;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(emberCount * 3);
     const speeds = new Float32Array(emberCount);
     const initialY = new Float32Array(emberCount);
 
     for (let i = 0; i < emberCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 0.6;
-      const y = 0.3 + Math.random() * 1.8;
+      positions[i * 3] = (Math.random() - 0.5) * 1.0;
+      const y = 0.5 + Math.random() * 2.5;
       positions[i * 3 + 1] = y;
       initialY[i] = y;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 0.6;
-      speeds[i] = 0.8 + Math.random() * 1.2;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 1.0;
+      speeds[i] = 1.0 + Math.random() * 1.5;
     }
 
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));

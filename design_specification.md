@@ -14,9 +14,9 @@ Scena przedstawia tajemniczy, klimatyczny las dark fantasy w nocy/zmierzchu, w k
 
 ## 3. Paleta Kolorów i Stylistyka Wizualna
 - **Estetyka:** Dark Fantasy Pixel Art (tryb wyłącznej rozdzielczości Crisp HD z wyostrzonym renderowaniem 3D i efektami CRT).
-- **Tło / Las & Zamek:** Deep Night Navy (`#060913`), Dark Emerald Canopy (`#0a1a14`), Mystical Purple Fog (`#160c28`), Obsidian (`#0b0c10`), Castle Window Amber Glow (`#ffaa00`).
-- **Biurko / Elementy Drewniane & Ognisko:** Oak Bark (`#2d1b0e`), Weathered Wood (`#4a2e1b`), Aged Iron (`#1c1815`), Campfire Amber Flame (`#ff6600`).
-- **Oświetlenie & Efekty Glow:** Fungi Bioluminescence Cyan (`#00f3ff`), Rune Gold (`#ffb700`), CRT Phosphor Green (`#39ff14`), Crimson Rune (`#ff2a5f`), Campfire Firelight (`#ff7700`).
+- **Tło / Las, Pełnia Księżyca & Zamek:** Deep Night Navy (`#060913`), Silvery Blue Moonlight (`#a5c8ff`), Dark Emerald Canopy (`#0a1a14`), Mystical Purple Fog (`#160c28`), Obsidian (`#0b0c10`), Castle Window Amber Glow (`#ffaa00`).
+- **Biurko / Elementy Drewniane & Duże Ognisko:** Oak Bark (`#2d1b0e`), Weathered Wood (`#4a2e1b`), Aged Iron (`#1c1815`), Campfire Amber Flame (`#ff6600`).
+- **Oświetlenie & Efekty Glow:** Full Moon Glow (`#d9ecff`), Fungi Bioluminescence Cyan (`#00f3ff`), Rune Gold (`#ffb700`), CRT Phosphor Green (`#39ff14`), Crimson Rune (`#ff2a5f`), Campfire Firelight (`#ff6600`).
 - **Typografia:** 
   - Nagłówki retro/rpg: `'Press Start 2P'`, `'Cinzel'`, `'Silkscreen'`.
   - Tekst terminala/UI: `'VT323'`, `'Fira Code'`, monospace.
