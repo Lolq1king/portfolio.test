@@ -68,15 +68,17 @@ class Application {
       const cameraLabel = document.getElementById('camera-view-label');
       if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: EKRAN CRT';
     } else {
-      // Execute item specific action if defined (e.g., lamp atmosphere change)
+      // Execute item specific action if defined (e.g., lamp atmosphere color change)
       if (typeof data.action === 'function') {
         const msg = data.action();
         if (msg) {
           const toast = document.getElementById('instruction-toast');
           if (toast) toast.querySelector('p span').textContent = msg;
         }
+        // Do NOT open detail modal when custom action is executed (e.g. lamp)
+        return;
       }
-      // Open generic detail modal
+      // Open generic detail modal for other desk items
       this.terminalUI.openItemModal(data);
     }
   }

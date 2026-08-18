@@ -140,8 +140,8 @@ export class DeskObjectRegistry {
 
     chamber.userData = {
       id: 'lamp',
-      name: 'Miedziana Lampa Rozświetlająca Mrok',
-      desc: 'Symbolizuje poszukiwanie rozwiązań w trudnych problemach. Kliknij, aby zmienić oświetlenie atmosfery w lesie!',
+      name: 'Miedziana Lampa Magii Kolorów',
+      desc: 'Klikaj w lampę, aby zmieniać paletę barwną i atmosferę scenerii lasu!',
       icon: '🕯️',
       action: () => this.toggleAtmosphere()
     };
@@ -153,28 +153,38 @@ export class DeskObjectRegistry {
   toggleAtmosphere() {
     if (!this.sceneManager) return;
     
-    // Cycle through 3 dark fantasy atmospheres
-    if (!this.atmosphereIndex) this.atmosphereIndex = 0;
-    this.atmosphereIndex = (this.atmosphereIndex + 1) % 3;
+    // Cycle through 4 vibrant dark fantasy scenery atmospheres
+    if (this.atmosphereIndex === undefined) this.atmosphereIndex = 0;
+    this.atmosphereIndex = (this.atmosphereIndex + 1) % 4;
 
     if (this.atmosphereIndex === 0) {
-      // Midnight Moonlight
+      // 1. Midnight Silvery Full Moon (Srebrzysta Noc)
       this.sceneManager.scene.fog.color.setHex(0x0c0b1a);
       this.sceneManager.scene.background.setHex(0x060913);
-      this.sceneManager.moonLight.color.setHex(0x7397cd);
-      return 'Atmosfera: Mroczna Noc Księżycowa';
+      this.sceneManager.moonLight.color.setHex(0xa5c8ff);
+      this.sceneManager.ambientLight.color.setHex(0x384a75);
+      return '🔮 Kolory Scenerii: Srebrzysta Noc Księżycowa';
     } else if (this.atmosphereIndex === 1) {
-      // Twilight Dusk / Blood Moon
-      this.sceneManager.scene.fog.color.setHex(0x240a15);
-      this.sceneManager.scene.background.setHex(0x13060c);
-      this.sceneManager.moonLight.color.setHex(0xff3366);
-      return 'Atmosfera: Krwawy Zmierzch';
-    } else {
-      // Deep Eldritch Emerald Mist
+      // 2. Crimson Blood Moon (Krwawy Zmierzch)
+      this.sceneManager.scene.fog.color.setHex(0x2a0815);
+      this.sceneManager.scene.background.setHex(0x15040a);
+      this.sceneManager.moonLight.color.setHex(0xff3355);
+      this.sceneManager.ambientLight.color.setHex(0x551525);
+      return '🔮 Kolory Scenerii: Krwawy Zmierzch';
+    } else if (this.atmosphereIndex === 2) {
+      // 3. Deep Eldritch Emerald Mist (Szmaragdowa Mgła)
       this.sceneManager.scene.fog.color.setHex(0x061c16);
       this.sceneManager.scene.background.setHex(0x030d0a);
       this.sceneManager.moonLight.color.setHex(0x00ffcc);
-      return 'Atmosfera: Mistyczna Szmaragdowa Mgła';
+      this.sceneManager.ambientLight.color.setHex(0x124235);
+      return '🔮 Kolory Scenerii: Szmaragdowa Mgła';
+    } else {
+      // 4. Royal Violet Eclipse (Fioletowe Zaćmienie)
+      this.sceneManager.scene.fog.color.setHex(0x1b0a2a);
+      this.sceneManager.scene.background.setHex(0x0e0417);
+      this.sceneManager.moonLight.color.setHex(0xb555ff);
+      this.sceneManager.ambientLight.color.setHex(0x3b1654);
+      return '🔮 Kolory Scenerii: Fioletowe Zaćmienie';
     }
   }
 
