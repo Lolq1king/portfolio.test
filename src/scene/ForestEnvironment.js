@@ -51,22 +51,40 @@ export class ForestEnvironment {
   }
 
   initTrees() {
-    // Generate a ring of dark fantasy pine trees around the clearing
-    const treeCount = 28;
-    const radius = 10.5;
+    // Generate dark fantasy pine trees framing the clearing (behind the desk and on flanks)
+    // Front corridor (z > 1 and |x| < 5) is kept completely open for an unobstructed view of the desk!
+    const treePositions = [];
 
-    for (let i = 0; i < treeCount; i++) {
-      const angle = (i / treeCount) * Math.PI * 2 + (Math.random() * 0.2);
-      const dist = radius + (Math.random() * 3.5 - 1.5);
+    // 1. Dense background trees (behind desk, z < -1)
+    const bgCount = 20;
+    for (let i = 0; i < bgCount; i++) {
+      const angle = Math.PI + (i / (bgCount - 1)) * Math.PI + (Math.random() * 0.15 - 0.07);
+      const dist = 7.5 + Math.random() * 5.5;
       const x = Math.cos(angle) * dist;
       const z = Math.sin(angle) * dist;
+      treePositions.push({ x, z, scale: 0.85 + Math.random() * 0.55 });
+    }
 
-      const scale = 0.8 + Math.random() * 0.5;
-      const tree = this.createDarkPineTree(scale);
-      tree.position.set(x, 0, z);
+    // 2. Left and Right flank trees (leaving central corridor x: -4.5 to +4.5 open)
+    const flankCount = 10;
+    for (let i = 0; i < flankCount; i++) {
+      // Left side
+      const xLeft = -4.8 - Math.random() * 4.5;
+      const zLeft = (Math.random() * 8) - 2;
+      treePositions.push({ x: xLeft, z: zLeft, scale: 0.9 + Math.random() * 0.5 });
+
+      // Right side
+      const xRight = 4.8 + Math.random() * 4.5;
+      const zRight = (Math.random() * 8) - 2;
+      treePositions.push({ x: xRight, z: zRight, scale: 0.9 + Math.random() * 0.5 });
+    }
+
+    treePositions.forEach((pos) => {
+      const tree = this.createDarkPineTree(pos.scale);
+      tree.position.set(pos.x, 0, pos.z);
       tree.rotation.y = Math.random() * Math.PI;
       this.scene.add(tree);
-    }
+    });
   }
 
   createDarkPineTree(scale = 1) {

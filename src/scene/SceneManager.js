@@ -30,8 +30,8 @@ export class SceneManager {
       100
     );
     // Initial camera placement viewing the clearing & desk
-    this.camera.position.set(0, 5, 12);
-    this.camera.lookAt(0, 1.8, 0);
+    this.camera.position.set(0, 3.8, 9.2);
+    this.camera.lookAt(0, 2.0, 0);
 
     this.renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance' });
     this.renderer.setSize(window.innerWidth, window.innerHeight);

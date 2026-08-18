@@ -9,8 +9,8 @@ export class CameraController {
     this.mode = 'overview'; // 'overview' | 'monitor'
 
     // Preset positions
-    this.overviewPos = new THREE.Vector3(0, 4.5, 11);
-    this.overviewTarget = new THREE.Vector3(0, 1.8, 0);
+    this.overviewPos = new THREE.Vector3(0, 3.8, 9.2);
+    this.overviewTarget = new THREE.Vector3(0, 2.0, 0);
 
     this.monitorPos = new THREE.Vector3(0, 2.46, 1.55);
     this.monitorTarget = new THREE.Vector3(0, 2.46, 0.51);
