@@ -1,0 +1,130 @@
+import { SceneManager } from './scene/SceneManager.js';
+import { ForestEnvironment } from './scene/ForestEnvironment.js';
+import { WoodenDesk } from './scene/WoodenDesk.js';
+import { ComputerCRT } from './scene/ComputerCRT.js';
+import { DeskObjectRegistry } from './scene/DeskObjectRegistry.js';
+
+import { CameraController } from './utils/CameraController.js';
+import { RaycastInteraction } from './utils/RaycastInteraction.js';
+import { TerminalUI } from './ui/TerminalUI.js';
+import { AudioController } from './ui/AudioController.js';
+
+class Application {
+  constructor() {
+    this.container = document.getElementById('canvas-container');
+
+    // 1. Initialize Scene Engine & Shaders
+    this.sceneManager = new SceneManager(this.container);
+
+    // 2. Build 3D World Components
+    this.forest = new ForestEnvironment(this.sceneManager.scene);
+    this.desk = new WoodenDesk(this.sceneManager.scene);
+    this.computer = new ComputerCRT(this.sceneManager.scene);
+    this.deskRegistry = new DeskObjectRegistry(this.sceneManager.scene, this.sceneManager);
+
+    // 3. Combine Interactive Objects
+    const allInteractiveObjects = [
+      ...this.computer.interactiveObjects,
+      ...this.deskRegistry.getInteractiveObjects()
+    ];
+
+    // 4. Initialize Camera & Interaction Controllers
+    this.cameraController = new CameraController(
+      this.sceneManager.camera,
+      this.sceneManager.renderer.domElement
+    );
+
+    this.terminalUI = new TerminalUI(this.cameraController);
+    this.audioController = new AudioController();
+
+    this.raycaster = new RaycastInteraction(
+      this.sceneManager.camera,
+      this.sceneManager.scene,
+      this.sceneManager.renderer.domElement,
+      (clickedObject) => this.handleObjectClick(clickedObject)
+    );
+    this.raycaster.setInteractiveObjects(allInteractiveObjects);
+
+    this.initHUDControls();
+
+    // 5. Start Render Loop
+    this.clock = new THREE_Clock();
+    this.animate();
+  }
+
+  handleObjectClick(object) {
+    const data = object.userData;
+    if (!data) return;
+
+    if (data.id === 'computer-crt') {
+      // Zoom camera to monitor & open CRT Terminal Modal
+      this.cameraController.zoomToMonitor(() => {
+        this.terminalUI.openCRTModal();
+      });
+      const cameraLabel = document.getElementById('camera-view-label');
+      if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: EKRAN CRT';
+    } else {
+      // Execute item specific action if defined (e.g., lamp atmosphere change)
+      if (typeof data.action === 'function') {
+        const msg = data.action();
+        if (msg) {
+          const toast = document.getElementById('instruction-toast');
+          if (toast) toast.querySelector('p span').textContent = msg;
+        }
+      }
+      // Open generic detail modal
+      this.terminalUI.openItemModal(data);
+    }
+  }
+
+  initHUDControls() {
+    // Pixel Scale Toggle Button
+    const btnPixel = document.getElementById('btn-toggle-pixel');
+    const pixelLabel = document.getElementById('pixel-scale-label');
+    if (btnPixel && pixelLabel) {
+      btnPixel.addEventListener('click', () => {
+        const newLabel = this.sceneManager.togglePixelScale();
+        pixelLabel.textContent = newLabel;
+      });
+    }
+
+    // Camera View Toggle Button
+    const btnCamera = document.getElementById('btn-camera-view');
+    const cameraLabel = document.getElementById('camera-view-label');
+    if (btnCamera && cameraLabel) {
+      btnCamera.addEventListener('click', () => {
+        const newMode = this.cameraController.toggleView(
+          () => this.terminalUI.openCRTModal(),
+          () => this.terminalUI.closeCRTModal()
+        );
+        cameraLabel.textContent = newMode === 'monitor' ? 'SKUPIENIE: EKRAN CRT' : 'SKUPIENIE: LAS';
+      });
+    }
+  }
+
+  animate() {
+    requestAnimationFrame(() => this.animate());
+
+    const time = performance.now() * 0.001;
+
+    // Update particles, fireflies and camera
+    this.forest.update(time);
+    this.cameraController.update();
+    this.sceneManager.render(time);
+  }
+}
+
+// Clock polyfill helper for time
+class THREE_Clock {
+  constructor() {
+    this.startTime = performance.now();
+  }
+  getElapsedTime() {
+    return (performance.now() - this.startTime) * 0.001;
+  }
+}
+
+// Launch app when DOM is ready
+window.addEventListener('DOMContentLoaded', () => {
+  new Application();
+});
