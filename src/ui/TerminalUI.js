@@ -49,6 +49,34 @@ export class TerminalUI {
         this.closeItemModal();
       });
     }
+
+    const contactForm = document.getElementById('contact-form');
+    const statusMsg = document.getElementById('contact-status-msg');
+    const btnSend = document.getElementById('btn-send-raven');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nameVal = document.getElementById('sender-name')?.value || 'Wędrowiec';
+
+        if (btnSend) {
+          btnSend.disabled = true;
+          btnSend.innerHTML = '<span>🦅 WYPUSZCZANIE KRUKA...</span>';
+        }
+
+        setTimeout(() => {
+          if (statusMsg) {
+            statusMsg.classList.remove('hidden');
+            statusMsg.innerHTML = `🦅 <strong>[KRUK POCZTOWY WYSTARTOWAŁ!]</strong><br/>Dziękuję ${nameVal}! Twoja wiadomość odleciała przez mroczny las do Czarodzieja Lolq. Odpowiedź zostanie przesłana na Twój adres e-mail.`;
+          }
+          if (btnSend) {
+            btnSend.disabled = false;
+            btnSend.innerHTML = '<span>🦅 WYŚLIJ PONOWNIE</span>';
+          }
+          contactForm.reset();
+        }, 800);
+      });
+    }
   }
 
   openCRTModal() {

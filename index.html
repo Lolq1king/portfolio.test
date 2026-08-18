@@ -170,10 +170,10 @@
             </div>
           </section>
 
-          <!-- TAB 4: KRUK POCZTOWY (CONTACT) -->
+          <!-- TAB 3: KRUK POCZTOWY (KONTAKT) -->
           <section id="tab-contact" class="crt-tab-content">
             <h2 class="section-title">WYŚLIJ KRUKA POCZTOWEGO (KONTAKT)</h2>
-            <form id="contact-form" class="pixel-form" onsubmit="event.preventDefault(); alert('Kruk odleciał z Twoją wiadomością!');">
+            <form id="contact-form" class="pixel-form">
               <div class="form-group">
                 <label for="sender-name">TWOJE IMIĘ / ALIAS:</label>
                 <input type="text" id="sender-name" required placeholder="Wpisz imię wędrowca..." />
@@ -186,7 +186,8 @@
                 <label for="sender-msg">TREŚĆ WIADOMOŚCI:</label>
                 <textarea id="sender-msg" rows="4" required placeholder="Napisz swoją wiadomość do programisty..."></textarea>
               </div>
-              <button type="submit" class="crt-btn-submit">
+              <div id="contact-status-msg" class="contact-status-msg hidden"></div>
+              <button type="submit" id="btn-send-raven" class="crt-btn-submit">
                 <span>🦅 WYŚLIJ KRUKA</span>
               </button>
             </form>
