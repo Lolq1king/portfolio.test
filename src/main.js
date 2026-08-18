@@ -70,6 +70,27 @@ class Application {
       });
       const cameraLabel = document.getElementById('camera-view-label');
       if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: EKRAN CRT';
+    } else if (
+      data.id === 'bookshelf-frame' ||
+      data.id === 'bookshelf-main-header' ||
+      (data.id && data.id.startsWith('shelf-series-tag-')) ||
+      (data.id && (data.id.startsWith('szaman-') || data.id.startsWith('przeistoczeni-') || data.id.startsWith('levelup-')))
+    ) {
+      const cameraLabel = document.getElementById('camera-view-label');
+
+      // If camera is not yet zoomed in to the bookshelf, first zoom in!
+      if (this.cameraController.mode !== 'bookshelf') {
+        this.cameraController.zoomToBookshelf();
+        if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: BIBLIOTECZKA';
+        
+        const toast = document.getElementById('instruction-toast');
+        if (toast) {
+          toast.querySelector('p span').textContent = 'Przybliżono widok na Biblioteczkę Użytkownika! Kliknij w książkę, aby zobaczyć opis.';
+        }
+      } else {
+        // If already in bookshelf close-up mode, open detail modal for the item
+        this.terminalUI.openItemModal(data);
+      }
     } else {
       // Execute item specific action if defined (e.g., lamp atmosphere color change)
       if (typeof data.action === 'function') {
@@ -78,7 +99,6 @@ class Application {
           const toast = document.getElementById('instruction-toast');
           if (toast) toast.querySelector('p span').textContent = msg;
         }
-        // Do NOT open detail modal when custom action is executed (e.g. lamp)
         return;
       }
       // Open generic detail modal for other desk items
@@ -97,16 +117,24 @@ class Application {
       });
     }
 
-    // Camera View Toggle Button
+    // Camera View Toggle Button (Cycles: Las -> Ekran CRT -> Biblioteczka -> Las)
     const btnCamera = document.getElementById('btn-camera-view');
     const cameraLabel = document.getElementById('camera-view-label');
     if (btnCamera && cameraLabel) {
       btnCamera.addEventListener('click', () => {
         const newMode = this.cameraController.toggleView(
           () => this.terminalUI.openCRTModal(),
+          () => this.terminalUI.closeCRTModal(),
           () => this.terminalUI.closeCRTModal()
         );
-        cameraLabel.textContent = newMode === 'monitor' ? 'SKUPIENIE: EKRAN CRT' : 'SKUPIENIE: LAS';
+
+        if (newMode === 'monitor') {
+          cameraLabel.textContent = 'SKUPIENIE: EKRAN CRT';
+        } else if (newMode === 'bookshelf') {
+          cameraLabel.textContent = 'SKUPIENIE: BIBLIOTECZKA';
+        } else {
+          cameraLabel.textContent = 'SKUPIENIE: LAS';
+        }
       });
     }
   }

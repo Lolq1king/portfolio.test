@@ -286,6 +286,20 @@ export class Bookshelf {
       }
     });
 
+    // Frame UserData for click-to-zoom interaction
+    const frameUserData = {
+      id: 'bookshelf-frame',
+      name: '📜 BIBLIOTECZKA UŻYTKOWNIKA',
+      desc: 'Prywatna biblioteczka użytkownika ze zbiorami powieści oraz serii książkowych. Kliknij na regał, aby przybliżyć widok i przejrzeć grzbiety książek!',
+      icon: '📚'
+    };
+    leftSide.userData = frameUserData;
+    rightSide.userData = frameUserData;
+    topCap.userData = frameUserData;
+    base.userData = frameUserData;
+    backPanel.userData = frameUserData;
+    this.interactiveObjects.push(leftSide, rightSide, topCap, base, backPanel);
+
     // 5. Iron Corner Brackets Accent
     const ironMat = new THREE.MeshStandardMaterial({ color: 0x1f242d, metalness: 0.8, roughness: 0.4 });
     const bracketGeo = new THREE.BoxGeometry(0.12, 0.12, 0.12);
@@ -330,7 +344,7 @@ export class Bookshelf {
 
   createLitRPGHeaderPlaque() {
     // Elegant Golden Arch Header Plaque at the top of the bookshelf
-    const plaqueGeo = new THREE.BoxGeometry(1.4, 0.22, 0.05);
+    const plaqueGeo = new THREE.BoxGeometry(1.5, 0.22, 0.05);
     const goldMat = new THREE.MeshStandardMaterial({
       color: 0xf59e0b,
       emissive: 0xd97706,
@@ -355,11 +369,11 @@ export class Bookshelf {
     plaque.add(gem);
 
     plaque.userData = {
-      id: 'litrpg-shelf-header',
-      name: '⚔️ GATUNEK: KOLEKCJA LITRPG ⚔️',
-      desc: 'Wszystkie powieści z gatunku LitRPG (Literary Role Playing Game) zostały zebrane na jednej głównej półce z wyraźnym podziałem na poszczególne cykle autorskie.',
-      icon: '🎮',
-      extraInfo: 'Półka LitRPG zawiera 3 serie (13 tomów):\n1. Droga Szamana (7 tomów)\n2. Świat Przeistoczonych (3 tomy)\n3. Level Up (3 tomy)'
+      id: 'bookshelf-main-header',
+      name: '📜 BIBLIOTECZKA UŻYTKOWNIKA',
+      desc: 'Prywatna biblioteczka użytkownika ze zbiorami powieści oraz serii książkowych. Kliknij na regał, aby przybliżyć widok i dokładnie przejrzeć grzbiety książek!',
+      icon: '📚',
+      extraInfo: 'Górna Półka: Kolekcja Powieści LitRPG (13 tomów w 3 cyklach)'
     };
 
     this.group.add(plaque);

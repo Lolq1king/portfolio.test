@@ -6,7 +6,7 @@ export class CameraController {
     this.camera = camera;
     this.domElement = domElement;
 
-    this.mode = 'overview'; // 'overview' | 'monitor'
+    this.mode = 'overview'; // 'overview' | 'monitor' | 'bookshelf'
 
     // Preset positions
     this.overviewPos = new THREE.Vector3(0, 5.2, 13.0);
@@ -14,6 +14,10 @@ export class CameraController {
 
     this.monitorPos = new THREE.Vector3(0, 2.65, 2.6);
     this.monitorTarget = new THREE.Vector3(0, 2.46, 0.51);
+
+    // Bookshelf close-up view position (angled directly at the bookshelf frame & shelves)
+    this.bookshelfPos = new THREE.Vector3(1.8, 2.5, 5.6);
+    this.bookshelfTarget = new THREE.Vector3(3.5, 2.0, 0.8);
 
     this.currentTarget = this.overviewTarget.clone();
 
@@ -25,7 +29,7 @@ export class CameraController {
 
     window.addEventListener('mousemove', (e) => this.onMouseMove(e));
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.mode === 'monitor') {
+      if (e.key === 'Escape' && (this.mode === 'monitor' || this.mode === 'bookshelf')) {
         this.zoomToOverview();
       }
     });
@@ -63,6 +67,32 @@ export class CameraController {
     });
   }
 
+  zoomToBookshelf(onComplete) {
+    this.mode = 'bookshelf';
+
+    gsap.to(this.camera.position, {
+      x: this.bookshelfPos.x,
+      y: this.bookshelfPos.y,
+      z: this.bookshelfPos.z,
+      duration: 1.4,
+      ease: 'power3.inOut'
+    });
+
+    gsap.to(this.currentTarget, {
+      x: this.bookshelfTarget.x,
+      y: this.bookshelfTarget.y,
+      z: this.bookshelfTarget.z,
+      duration: 1.4,
+      ease: 'power3.inOut',
+      onUpdate: () => {
+        this.camera.lookAt(this.currentTarget);
+      },
+      onComplete: () => {
+        if (onComplete) onComplete();
+      }
+    });
+  }
+
   zoomToOverview(onComplete) {
     this.mode = 'overview';
 
@@ -89,10 +119,13 @@ export class CameraController {
     });
   }
 
-  toggleView(onMonitorCallback, onOverviewCallback) {
+  toggleView(onMonitorCallback, onOverviewCallback, onBookshelfCallback) {
     if (this.mode === 'overview') {
       this.zoomToMonitor(onMonitorCallback);
       return 'monitor';
+    } else if (this.mode === 'monitor') {
+      this.zoomToBookshelf(onBookshelfCallback);
+      return 'bookshelf';
     } else {
       this.zoomToOverview(onOverviewCallback);
       return 'overview';
