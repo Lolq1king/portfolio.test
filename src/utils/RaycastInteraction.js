@@ -18,6 +18,9 @@ export class RaycastInteraction {
     this.tooltipDesc = document.getElementById('tooltip-desc');
 
     this.enabled = true;
+    this.lastRaycastTime = 0;
+    this.lastScreenX = 0;
+    this.lastScreenY = 0;
 
     window.addEventListener('mousemove', (e) => this.onPointerMove(e));
     window.addEventListener('click', (e) => this.onPointerClick(e));
@@ -35,8 +38,14 @@ export class RaycastInteraction {
 
     this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    this.lastScreenX = event.clientX;
+    this.lastScreenY = event.clientY;
 
-    this.checkIntersections(event.clientX, event.clientY);
+    const now = performance.now();
+    if (now - this.lastRaycastTime > 30) { // Max ~30Hz raycasting rate
+      this.lastRaycastTime = now;
+      this.checkIntersections(this.lastScreenX, this.lastScreenY);
+    }
   }
 
   checkIntersections(screenX, screenY) {

@@ -11,6 +11,10 @@ export class DarkCastle {
     this.createIlluminatedWindows();
     this.createAuraLight();
 
+    // Disable matrix auto-update on static background group to boost CPU frame processing
+    this.group.matrixAutoUpdate = false;
+    this.group.updateMatrix();
+
     this.scene.add(this.group);
   }
 

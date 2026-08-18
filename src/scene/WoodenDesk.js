@@ -5,6 +5,11 @@ export class WoodenDesk {
     this.scene = scene;
     this.deskGroup = new THREE.Group();
     this.createDesk();
+
+    // Disable matrix auto-update on static group to boost CPU frame processing
+    this.deskGroup.matrixAutoUpdate = false;
+    this.deskGroup.updateMatrix();
+
     this.scene.add(this.deskGroup);
   }
 

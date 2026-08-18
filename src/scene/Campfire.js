@@ -90,9 +90,7 @@ export class Campfire {
     // Warm campfire light illuminating the forest clearing
     this.fireLight = new THREE.PointLight(0xff6600, 5.5, 14);
     this.fireLight.position.set(0, 0.8, 0);
-    this.fireLight.castShadow = true;
-    this.fireLight.shadow.mapSize.width = 1024;
-    this.fireLight.shadow.mapSize.height = 1024;
+    this.fireLight.castShadow = false; // Point light shadow disabled for massive GPU performance boost
     this.group.add(this.fireLight);
   }
 

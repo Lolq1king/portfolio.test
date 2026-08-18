@@ -533,6 +533,10 @@ export class Bookshelf {
     this.createSeriesDividers();
     this.createBooks();
 
+    // Disable matrix auto-update on static group to boost CPU frame processing
+    this.group.matrixAutoUpdate = false;
+    this.group.updateMatrix();
+
     this.scene.add(this.group);
   }
 

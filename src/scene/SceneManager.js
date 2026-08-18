@@ -73,7 +73,7 @@ export class SceneManager {
     // 5. Warm Desk Lamp Light
     this.lampLight = new THREE.PointLight(0xffb347, 5.5, 12);
     this.lampLight.position.set(-1.2, 2.8, 0.2);
-    this.lampLight.castShadow = true;
+    this.lampLight.castShadow = false; // Point light shadow disabled for massive GPU performance boost
     this.scene.add(this.lampLight);
 
     // 6. CRT Monitor Glowing Light
