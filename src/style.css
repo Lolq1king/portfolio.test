@@ -151,23 +151,18 @@ html, body {
   color: #000;
 }
 
-/* Tooltip for Objects */
 .pixel-tooltip {
   position: absolute;
-  background: rgba(10, 15, 29, 0.95);
+  background: rgba(10, 15, 29, 0.96);
   border: 3px solid var(--primary-cyan);
   box-shadow: var(--shadow-pixel);
-  padding: 12px;
-  max-width: 280px;
+  padding: 12px 16px;
+  width: max-content;
+  max-width: 380px;
   z-index: 50;
   transform: translate(-50%, -120%);
   pointer-events: none;
-  animation: floatTooltip 2s ease-in-out infinite alternate;
-}
-
-@keyframes floatTooltip {
-  from { transform: translate(-50%, -120%); }
-  to { transform: translate(-50%, -128%); }
+  border-radius: 4px;
 }
 
 .pixel-tooltip.hidden {

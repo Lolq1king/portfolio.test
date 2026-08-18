@@ -15,9 +15,9 @@ export class CameraController {
     this.monitorPos = new THREE.Vector3(0, 2.65, 2.6);
     this.monitorTarget = new THREE.Vector3(0, 2.46, 0.51);
 
-    // Bookshelf close-up view position (Orthogonal line of sight to bookshelf face)
-    this.bookshelfPos = new THREE.Vector3(1.78, 2.35, 4.62);
-    this.bookshelfTarget = new THREE.Vector3(3.5, 2.0, 0.8);
+    // Bookshelf framing view position (Pulls back to frame entire 3.4m tall & 2.45m wide bookshelf)
+    this.bookshelfPos = new THREE.Vector3(1.22, 2.93, 5.91);
+    this.bookshelfTarget = new THREE.Vector3(3.5, 1.70, 0.8);
 
     this.currentTarget = this.overviewTarget.clone();
     this.isTransitioning = false;

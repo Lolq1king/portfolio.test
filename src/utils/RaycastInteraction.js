@@ -81,8 +81,29 @@ export class RaycastInteraction {
 
   updateTooltipPos(screenX, screenY) {
     if (!this.tooltipEl) return;
-    this.tooltipEl.style.left = `${screenX}px`;
-    this.tooltipEl.style.top = `${screenY}px`;
+
+    // Get actual dimensions of the rendered tooltip box
+    const rect = this.tooltipEl.getBoundingClientRect();
+    const tooltipWidth = rect.width || 340;
+    const tooltipHeight = rect.height || 140;
+
+    let posX = screenX;
+    let posY = screenY;
+
+    // Clamp X so tooltip never overflows left or right edge of screen
+    const minX = tooltipWidth / 2 + 15;
+    const maxX = window.innerWidth - tooltipWidth / 2 - 15;
+    posX = Math.max(minX, Math.min(posX, maxX));
+
+    // Flip vertical direction: if tooltip would overflow top of screen, flip it below cursor!
+    if (screenY - tooltipHeight - 20 < 15) {
+      this.tooltipEl.style.transform = 'translate(-50%, 25px)';
+    } else {
+      this.tooltipEl.style.transform = 'translate(-50%, -120%)';
+    }
+
+    this.tooltipEl.style.left = `${posX}px`;
+    this.tooltipEl.style.top = `${posY}px`;
   }
 
   hideTooltip() {
