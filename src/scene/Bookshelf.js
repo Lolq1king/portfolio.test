@@ -18,8 +18,8 @@ export class Bookshelf {
         title: 'Droga Szamana. Etap 1: Początek',
         author: 'Wasilij Machanienko',
         shelf: 3,
-        xOffset: -0.85,
-        thickness: 0.085,
+        xOffset: -1.00,
+        thickness: 0.075,
         color: 0x0f766e,
         icon: '🔮',
         desc: 'Tom 1 serii Droga Szamana (LitRPG). Skazany Mahan trafia do wirtualnego świata Barliony jako Szaman i rozpoczyna walkę o przetrwanie.',
@@ -30,8 +30,8 @@ export class Bookshelf {
         title: 'Droga Szamana. Etap 2: Gambit Kartosa',
         author: 'Wasilij Machanienko',
         shelf: 3,
-        xOffset: -0.75,
-        thickness: 0.085,
+        xOffset: -0.91,
+        thickness: 0.075,
         color: 0x0d9488,
         icon: '♟️',
         desc: 'Tom 2. Rozwój unikalnej klasy Szamana, intrygi w kopalniach Pryzmy oraz rywalizacja z gildiami Barliony.',
@@ -42,8 +42,8 @@ export class Bookshelf {
         title: 'Droga Szamana. Etap 3: Tajemnica Mrocznego Lasu',
         author: 'Wasilij Machanienko',
         shelf: 3,
-        xOffset: -0.65,
-        thickness: 0.085,
+        xOffset: -0.82,
+        thickness: 0.075,
         color: 0x14b8a6,
         icon: '🌲',
         desc: 'Tom 3. Wyprawa w niebezpieczne rejony Mrocznego Lasu, poszukiwanie rzadkich składników i potężnych duchów.',
@@ -54,8 +54,8 @@ export class Bookshelf {
         title: 'Droga Szamana. Etap 4: Zamek Widmo',
         author: 'Wasilij Machanienko',
         shelf: 3,
-        xOffset: -0.55,
-        thickness: 0.085,
+        xOffset: -0.73,
+        thickness: 0.075,
         color: 0x0284c7,
         icon: '🏰',
         desc: 'Tom 4. Epickie rajdy, oblężenia twierdz i walka o kontrolę nad strategicznymi zasobami świata gry.',
@@ -66,8 +66,8 @@ export class Bookshelf {
         title: 'Droga Szamana. Etap 5: Szachy Karmadonta',
         author: 'Wasilij Machanienko',
         shelf: 3,
-        xOffset: -0.45,
-        thickness: 0.085,
+        xOffset: -0.64,
+        thickness: 0.075,
         color: 0x2563eb,
         icon: '♚',
         desc: 'Tom 5. Złożone rozgrywki polityczne najwyższego szczebla, gdzie każdy ruch może zaważyć o losie Barliony.',
@@ -78,8 +78,8 @@ export class Bookshelf {
         title: 'Droga Szamana. Etap 6: Nowy początek',
         author: 'Wasilij Machanienko',
         shelf: 3,
-        xOffset: -0.35,
-        thickness: 0.085,
+        xOffset: -0.55,
+        thickness: 0.075,
         color: 0x7c3aed,
         icon: '✨',
         desc: 'Tom 6. Próba odbudowania pozycji, pokonanie własnych ograniczeń i ponowne sięgnięcie po potęgę Szamana.',
@@ -90,8 +90,8 @@ export class Bookshelf {
         title: 'Droga Szamana. Etap 7: Na tropie stwórcy',
         author: 'Wasilij Machanienko',
         shelf: 3,
-        xOffset: -0.25,
-        thickness: 0.085,
+        xOffset: -0.46,
+        thickness: 0.075,
         color: 0x4338ca,
         icon: '☸️',
         desc: 'Tom 7. Kulminacja i wielki finał siedmiotomowej serii LitRPG o przygodach Mahana w świecie Barliony.',
@@ -106,8 +106,8 @@ export class Bookshelf {
         title: 'Świat Przeistoczonych. Tom 1: Bez prawa do błędu',
         author: 'Wasilij Machanienko',
         shelf: 3,
-        xOffset: -0.04,
-        thickness: 0.085,
+        xOffset: -0.26,
+        thickness: 0.075,
         color: 0x991b1b,
         icon: '⚠️',
         desc: 'Tom 1 serii Świat Przeistoczonych (LitRPG). Ziemia zostaje włączona w obszar gry obcych, a ludzie muszą walczyć o przetrwanie.',
@@ -118,8 +118,8 @@ export class Bookshelf {
         title: 'Świat Przeistoczonych. Tom 2: Perła południa',
         author: 'Wasilij Machanienko',
         shelf: 3,
-        xOffset: 0.06,
-        thickness: 0.085,
+        xOffset: -0.17,
+        thickness: 0.075,
         color: 0xbe123c,
         icon: '💎',
         desc: 'Tom 2. Mark Cather kontynuuje zmagania w przekształconym świecie, dążąc do opanowania kluczowych przyczółków i zdolności.',
@@ -130,8 +130,8 @@ export class Bookshelf {
         title: 'Świat Przeistoczonych. Tom 3: Spersonifikowane noa',
         author: 'Wasilij Machanienko',
         shelf: 3,
-        xOffset: 0.16,
-        thickness: 0.085,
+        xOffset: -0.08,
+        thickness: 0.075,
         color: 0x881337,
         icon: '⚡',
         desc: 'Tom 3. Kulminacja walki z najeźdźcami, odkrywanie tajemnic wyższej energii Noa oraz ostateczna próba przetrwania.',
@@ -146,8 +146,8 @@ export class Bookshelf {
         title: 'Level Up. Tom 1: Re-start',
         author: 'Dan Sugralinow',
         shelf: 3,
-        xOffset: 0.37,
-        thickness: 0.085,
+        xOffset: 0.12,
+        thickness: 0.075,
         color: 0x06b6d4,
         icon: '🎮',
         desc: 'Tom 1 serii Level Up (LitRPG/GameLit). Phil otrzymuje niezwykły interfejs rzeczywistości z paskami statystyk i poziomów.',
@@ -158,8 +158,8 @@ export class Bookshelf {
         title: 'Level Up. Tom 2: Bohater',
         author: 'Dan Sugralinow',
         shelf: 3,
-        xOffset: 0.47,
-        thickness: 0.085,
+        xOffset: 0.21,
+        thickness: 0.075,
         color: 0x16a34a,
         icon: '🆙',
         desc: 'Tom 2. Rozwijanie umiejętności w prawdziwym świecie, pokonywanie kolejnych poziomów trudności i nowe wyzwania.',
@@ -170,12 +170,40 @@ export class Bookshelf {
         title: 'Level Up. Tom 3: Próba',
         author: 'Dan Sugralinow',
         shelf: 3,
-        xOffset: 0.57,
-        thickness: 0.085,
+        xOffset: 0.30,
+        thickness: 0.075,
         color: 0xdc2626,
         icon: '🏆',
         desc: 'Tom 3. Ostateczny test możliwości Phila, wielkie starcie oraz próba zrozumienia natury tajemniczego interfejsu.',
         extraInfo: 'Gatunek: LitRPG 🎮 | Cykl: Level Up (Tom 3 z 3)'
+      },
+
+      // ==================================================================================
+      // --- SERIA 4: DUNGEON CRAWLER CARL (Matt Dinniman) - 2 Tomy na Półce 3 (Górna) ---
+      // ==================================================================================
+      {
+        id: 'dungeon-1',
+        title: 'Dungeon Crawler Carl. Tom 1: Dungeon Crawler Carl',
+        author: 'Matt Dinniman',
+        shelf: 3,
+        xOffset: 0.50,
+        thickness: 0.075,
+        color: 0xec4899,
+        icon: '🐱',
+        desc: 'Tom 1 słynnej serii LitRPG Matta Dinnimana. Carl i jego kotka Księżniczka Pączuś zostają wciągnięci do morderczego lochu kosmicznego reality show.',
+        extraInfo: 'Gatunek: LitRPG 🐱 | Cykl: Dungeon Crawler Carl (Tom 1 z 2)'
+      },
+      {
+        id: 'dungeon-2',
+        title: 'Dungeon Crawler Carl. Tom 2: Sądny dzień Carla',
+        author: 'Matt Dinniman',
+        shelf: 3,
+        xOffset: 0.59,
+        thickness: 0.075,
+        color: 0xe11d48,
+        icon: '💣',
+        desc: 'Tom 2 (Sądny dzień Carla). Dalsza walka Carla i Pączka na II poziomie lochu, gdzie zasady gry stają się jeszcze bardziej szalone.',
+        extraInfo: 'Gatunek: LitRPG 💣 | Cykl: Dungeon Crawler Carl (Tom 2 z 2)'
       }
     ];
 
@@ -193,8 +221,8 @@ export class Bookshelf {
   }
 
   createBookshelfFrame() {
-    // Extra wide width (2.05) to accommodate ALL 13 LitRPG books together on Shelf 3 with distinct series sections!
-    const width = 2.05;
+    // Wide width (2.45) to accommodate ALL 15 LitRPG books together on Shelf 3 with 4 distinct series sections!
+    const width = 2.45;
     const height = 3.4;
     const depth = 0.55;
 
@@ -261,12 +289,13 @@ export class Bookshelf {
       shelf.receiveShadow = true;
       this.group.add(shelf);
 
-      // On Shelf 3 (Top Shelf, idx === 2), add 3 distinct front brass series plaques!
+      // On Shelf 3 (Top Shelf, idx === 2), add 4 distinct front brass series plaques!
       if (idx === 2) {
         const shelfPlaques = [
-          { name: '🔮 CYKL: DROGA SZAMANA (Tom 1-7)', x: -0.55, w: 0.64, desc: 'Górna Półka LitRPG – Cykl "Droga Szamana" (Wasilij Machanienko, 7 tomów)' },
-          { name: '⚠️ CYKL: ŚWIAT PRZEISTOCZONYCH (Tom 1-3)', x: 0.06, w: 0.34, desc: 'Górna Półka LitRPG – Cykl "Świat Przeistoczonych" (Wasilij Machanienko, 3 tomy)' },
-          { name: '🎮 CYKL: LEVEL UP (Tom 1-3)', x: 0.47, w: 0.34, desc: 'Górna Półka LitRPG – Cykl "Level Up" (Dan Sugralinow, 3 tomy)' }
+          { name: '🔮 CYKL: DROGA SZAMANA (Tom 1-7)', x: -0.73, w: 0.62, desc: 'Górna Półka LitRPG – Cykl "Droga Szamana" (Wasilij Machanienko, 7 tomów)' },
+          { name: '⚠️ CYKL: ŚWIAT PRZEISTOCZONYCH (Tom 1-3)', x: -0.17, w: 0.32, desc: 'Górna Półka LitRPG – Cykl "Świat Przeistoczonych" (Wasilij Machanienko, 3 tomy)' },
+          { name: '🎮 CYKL: LEVEL UP (Tom 1-3)', x: 0.21, w: 0.30, desc: 'Górna Półka LitRPG – Cykl "Level Up" (Dan Sugralinow, 3 tomy)' },
+          { name: '🐱 CYKL: DUNGEON CRAWLER CARL (Tom 1-2)', x: 0.545, w: 0.30, desc: 'Górna Półka LitRPG – Cykl "Dungeon Crawler Carl" (Matt Dinniman, 2 tomy)' }
         ];
 
         shelfPlaques.forEach((tag, tIdx) => {
@@ -290,8 +319,9 @@ export class Bookshelf {
     const frameUserData = {
       id: 'bookshelf-frame',
       name: '📜 BIBLIOTECZKA UŻYTKOWNIKA',
-      desc: 'Prywatna biblioteczka użytkownika ze zbiorami powieści oraz serii książkowych. Kliknij na regał, aby przybliżyć widok i przejrzeć grzbiety książek!',
-      icon: '📚'
+      desc: 'Czytelnictwo to jedno z głównych zainteresowań użytkownika. Kolekcja mieści ulubione serie książkowe.',
+      icon: '📚',
+      extraInfo: 'Zainteresowania: Literatura LitRPG, Fantasy & Sci-Fi'
     };
     leftSide.userData = frameUserData;
     rightSide.userData = frameUserData;
@@ -312,7 +342,7 @@ export class Bookshelf {
   }
 
   createSeriesDividers() {
-    // Golden Metallic Bookend Dividers separating the series on Top Shelf 3 (y = 2.65)
+    // Golden Metallic Bookend Dividers separating the 4 series on Top Shelf 3 (y = 2.65)
     const goldMat = new THREE.MeshStandardMaterial({
       color: 0xf59e0b,
       metalness: 0.9,
@@ -321,7 +351,7 @@ export class Bookshelf {
 
     const shelfY = 2.65 + 0.035;
 
-    [-0.15, 0.26].forEach((xPos, i) => {
+    [-0.36, 0.02, 0.40].forEach((xPos, i) => {
       const dividerGroup = new THREE.Group();
       dividerGroup.position.set(xPos, shelfY, 0.02);
 
@@ -371,9 +401,9 @@ export class Bookshelf {
     plaque.userData = {
       id: 'bookshelf-main-header',
       name: '📜 BIBLIOTECZKA UŻYTKOWNIKA',
-      desc: 'Prywatna biblioteczka użytkownika ze zbiorami powieści oraz serii książkowych. Kliknij na regał, aby przybliżyć widok i dokładnie przejrzeć grzbiety książek!',
+      desc: 'Czytelnictwo to jedno z głównych zainteresowań użytkownika. Kolekcja mieści ulubione serie książkowe.',
       icon: '📚',
-      extraInfo: 'Górna Półka: Kolekcja Powieści LitRPG (13 tomów w 3 cyklach)'
+      extraInfo: 'Zainteresowania: Literatura LitRPG, Fantasy & Sci-Fi'
     };
 
     this.group.add(plaque);

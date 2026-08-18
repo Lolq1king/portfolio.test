@@ -74,9 +74,10 @@ class Application {
       data.id === 'bookshelf-frame' ||
       data.id === 'bookshelf-main-header' ||
       (data.id && data.id.startsWith('shelf-series-tag-')) ||
-      (data.id && (data.id.startsWith('szaman-') || data.id.startsWith('przeistoczeni-') || data.id.startsWith('levelup-')))
+      (data.id && (data.id.startsWith('szaman-') || data.id.startsWith('przeistoczeni-') || data.id.startsWith('levelup-') || data.id.startsWith('dungeon-')))
     ) {
       const cameraLabel = document.getElementById('camera-view-label');
+      const isBook = data.id && (data.id.startsWith('szaman-') || data.id.startsWith('przeistoczeni-') || data.id.startsWith('levelup-') || data.id.startsWith('dungeon-'));
 
       // If camera is not yet zoomed in to the bookshelf, first zoom in!
       if (this.cameraController.mode !== 'bookshelf') {
@@ -85,11 +86,23 @@ class Application {
         
         const toast = document.getElementById('instruction-toast');
         if (toast) {
-          toast.querySelector('p span').textContent = 'Przybliżono widok na Biblioteczkę Użytkownika! Kliknij w książkę, aby zobaczyć opis.';
+          toast.querySelector('p span').textContent = 'Przybliżono widok na Biblioteczkę Użytkownika! Kliknij w książkę, aby zobaczyć opis, lub ponownie w regał, aby wrócić.';
         }
       } else {
-        // If already in bookshelf close-up mode, open detail modal for the item
-        this.terminalUI.openItemModal(data);
+        // If already in bookshelf close-up mode:
+        if (isBook) {
+          // Clicking an individual book opens its detail modal
+          this.terminalUI.openItemModal(data);
+        } else {
+          // Clicking the bookshelf frame, header or shelf tag zooms back out to overview mode!
+          this.cameraController.zoomToOverview();
+          if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: LAS';
+
+          const toast = document.getElementById('instruction-toast');
+          if (toast) {
+            toast.querySelector('p span').textContent = 'Powrócono do pełnego widoku panoramy lasu.';
+          }
+        }
       }
     } else {
       // Execute item specific action if defined (e.g., lamp atmosphere color change)

@@ -15,11 +15,12 @@ export class CameraController {
     this.monitorPos = new THREE.Vector3(0, 2.65, 2.6);
     this.monitorTarget = new THREE.Vector3(0, 2.46, 0.51);
 
-    // Bookshelf close-up view position (angled directly at the bookshelf frame & shelves)
-    this.bookshelfPos = new THREE.Vector3(1.8, 2.5, 5.6);
+    // Bookshelf close-up view position (Orthogonal line of sight to bookshelf face)
+    this.bookshelfPos = new THREE.Vector3(1.78, 2.35, 4.62);
     this.bookshelfTarget = new THREE.Vector3(3.5, 2.0, 0.8);
 
     this.currentTarget = this.overviewTarget.clone();
+    this.isTransitioning = false;
 
     // Mouse parallax variables for Overview mode
     this.mouseX = 0;
@@ -36,13 +37,14 @@ export class CameraController {
   }
 
   onMouseMove(event) {
-    if (this.mode !== 'overview') return;
+    if (this.mode !== 'overview' || this.isTransitioning) return;
     this.targetMouseX = (event.clientX / window.innerWidth - 0.5) * 2;
     this.targetMouseY = (event.clientY / window.innerHeight - 0.5) * 2;
   }
 
   zoomToMonitor(onComplete) {
     this.mode = 'monitor';
+    this.isTransitioning = true;
 
     gsap.to(this.camera.position, {
       x: this.monitorPos.x,
@@ -62,6 +64,7 @@ export class CameraController {
         this.camera.lookAt(this.currentTarget);
       },
       onComplete: () => {
+        this.isTransitioning = false;
         if (onComplete) onComplete();
       }
     });
@@ -69,6 +72,7 @@ export class CameraController {
 
   zoomToBookshelf(onComplete) {
     this.mode = 'bookshelf';
+    this.isTransitioning = true;
 
     gsap.to(this.camera.position, {
       x: this.bookshelfPos.x,
@@ -88,13 +92,14 @@ export class CameraController {
         this.camera.lookAt(this.currentTarget);
       },
       onComplete: () => {
+        this.isTransitioning = false;
         if (onComplete) onComplete();
       }
     });
   }
 
   zoomToOverview(onComplete) {
-    this.mode = 'overview';
+    this.isTransitioning = true;
 
     gsap.to(this.camera.position, {
       x: this.overviewPos.x,
@@ -114,6 +119,8 @@ export class CameraController {
         this.camera.lookAt(this.currentTarget);
       },
       onComplete: () => {
+        this.mode = 'overview';
+        this.isTransitioning = false;
         if (onComplete) onComplete();
       }
     });
@@ -133,7 +140,7 @@ export class CameraController {
   }
 
   update() {
-    if (this.mode === 'overview') {
+    if (this.mode === 'overview' && !this.isTransitioning) {
       // Smooth parallax interpolation
       this.mouseX += (this.targetMouseX - this.mouseX) * 0.05;
       this.mouseY += (this.targetMouseY - this.mouseY) * 0.05;
