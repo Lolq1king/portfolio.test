@@ -5,6 +5,7 @@ import { ComputerCRT } from './scene/ComputerCRT.js';
 import { DeskObjectRegistry } from './scene/DeskObjectRegistry.js';
 import { Campfire } from './scene/Campfire.js';
 import { DarkCastle } from './scene/DarkCastle.js';
+import { Bookshelf } from './scene/Bookshelf.js';
 
 import { CameraController } from './utils/CameraController.js';
 import { RaycastInteraction } from './utils/RaycastInteraction.js';
@@ -24,12 +25,14 @@ class Application {
     this.desk = new WoodenDesk(this.sceneManager.scene);
     this.computer = new ComputerCRT(this.sceneManager.scene);
     this.campfire = new Campfire(this.sceneManager.scene);
+    this.bookshelf = new Bookshelf(this.sceneManager.scene);
     this.deskRegistry = new DeskObjectRegistry(this.sceneManager.scene, this.sceneManager);
 
     // 3. Combine Interactive Objects
     const allInteractiveObjects = [
       ...this.computer.interactiveObjects,
-      ...this.deskRegistry.getInteractiveObjects()
+      ...this.deskRegistry.getInteractiveObjects(),
+      ...this.bookshelf.interactiveObjects
     ];
 
     // 4. Initialize Camera & Interaction Controllers
