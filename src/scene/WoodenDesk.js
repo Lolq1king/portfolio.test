@@ -9,10 +9,10 @@ export class WoodenDesk {
   }
 
   createDesk() {
-    // 1. Tabletop
-    const topWidth = 3.6;
+    // 1. Tabletop (Expanded 4.6m width & 2.0m depth for dual monitors, PC tower & desk lamp)
+    const topWidth = 4.6;
     const topHeight = 0.22;
-    const topDepth = 1.8;
+    const topDepth = 2.0;
 
     const topGeo = new THREE.BoxGeometry(topWidth, topHeight, topDepth);
 

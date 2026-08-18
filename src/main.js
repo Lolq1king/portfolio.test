@@ -64,12 +64,24 @@ class Application {
     if (!data) return;
 
     if (data.id === 'computer-crt') {
-      // Zoom camera to monitor & open CRT Terminal Modal
+      // Zoom camera to central main CRT monitor & open CRT Terminal Modal
       this.cameraController.zoomToMonitor(() => {
         this.terminalUI.openCRTModal();
       });
       const cameraLabel = document.getElementById('camera-view-label');
       if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: EKRAN CRT';
+    } else if (data.id === 'computer-left-warzone') {
+      if (this.cameraController.mode === 'left-monitor') {
+        // Re-clicking left monitor while zoomed in returns camera back to initial overview state!
+        this.cameraController.zoomToOverview();
+        const cameraLabel = document.getElementById('camera-view-label');
+        if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: LAS';
+      } else {
+        // Zoom camera directly to left gaming monitor
+        this.cameraController.zoomToLeftMonitor();
+        const cameraLabel = document.getElementById('camera-view-label');
+        if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: MONITOR WARZONE';
+      }
     } else if (
       data.id === 'bookshelf-frame' ||
       data.id === 'bookshelf-main-header' ||

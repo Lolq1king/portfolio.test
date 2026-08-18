@@ -88,7 +88,7 @@ export class SceneManager {
 
     // 8. Dedicated Warm Bookshelf Illumination
     this.bookshelfLight = new THREE.PointLight(0xffe5b4, 5.8, 12);
-    this.bookshelfLight.position.set(3.5, 3.2, 2.5);
+    this.bookshelfLight.position.set(4.3, 3.2, 2.5);
     this.scene.add(this.bookshelfLight);
   }
 

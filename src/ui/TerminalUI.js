@@ -84,5 +84,12 @@ export class TerminalUI {
     if (this.itemModal) {
       this.itemModal.classList.add('hidden');
     }
+    if (this.cameraController && this.cameraController.mode === 'left-monitor') {
+      this.cameraController.zoomToOverview();
+      const cameraLabel = document.getElementById('camera-view-label');
+      if (cameraLabel) {
+        cameraLabel.textContent = 'SKUPIENIE: LAS';
+      }
+    }
   }
 }

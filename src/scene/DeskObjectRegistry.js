@@ -10,57 +10,8 @@ export class DeskObjectRegistry {
   }
 
   initDefaultItems() {
-    this.createSpellbook();
     this.createPotionBottle();
     this.createAncientLamp();
-  }
-
-  createSpellbook() {
-    // Ancient Leather Grimoire / Spellbook on left side of desk
-    const bookGroup = new THREE.Group();
-    bookGroup.position.set(-1.1, 1.76, 0.25);
-    bookGroup.rotation.y = 0.25;
-
-    // Leather Cover
-    const coverGeo = new THREE.BoxGeometry(0.55, 0.08, 0.75);
-    const coverMat = new THREE.MeshStandardMaterial({
-      color: 0x4a1818, // Dark crimson leather
-      roughness: 0.8
-    });
-    const cover = new THREE.Mesh(coverGeo, coverMat);
-    cover.castShadow = true;
-    bookGroup.add(cover);
-
-    // Gold Corner Accents & Rune Symbol
-    const runeGeo = new THREE.BoxGeometry(0.18, 0.09, 0.18);
-    const runeMat = new THREE.MeshStandardMaterial({
-      color: 0xffb700,
-      emissive: 0xffb700,
-      emissiveIntensity: 0.5,
-      metalness: 0.8
-    });
-    const rune = new THREE.Mesh(runeGeo, runeMat);
-    rune.position.y = 0.01;
-    bookGroup.add(rune);
-
-    // Book Pages
-    const pagesGeo = new THREE.BoxGeometry(0.5, 0.06, 0.7);
-    const pagesMat = new THREE.MeshStandardMaterial({ color: 0xded6b8, roughness: 0.9 });
-    const pages = new THREE.Mesh(pagesGeo, pagesMat);
-    pages.position.set(0.02, 0, 0);
-    bookGroup.add(pages);
-
-    // User Data Metadata
-    cover.userData = {
-      id: 'spellbook',
-      name: 'Księga Zaklęć (Grimoire)',
-      desc: 'Symbolizuje nieustanną naukę, studiowanie dokumentacji oraz poszerzanie wiedzy programistycznej.',
-      icon: '📜',
-      extraInfo: 'Wpis z księgi: "Kto opanuje strukturę danych i asynchroniczność, opanuje świat kodu."'
-    };
-
-    this.scene.add(bookGroup);
-    this.interactiveObjects.push(cover);
   }
 
   createPotionBottle() {
@@ -103,102 +54,92 @@ export class DeskObjectRegistry {
   }
 
   createAncientLamp() {
-    // Vintage Brass Kerosene Oil Lamp (Lampa naftowa) on the desk
+    // Prominent Vintage Brass & Copper Kerosene Desk Lamp in the gap between main monitor and PC tower on the right
     const lampGroup = new THREE.Group();
-    lampGroup.position.set(-1.2, 1.72, -0.2);
+    lampGroup.position.set(1.15, 1.71, 0.25);
 
     const brassMat = new THREE.MeshStandardMaterial({
-      color: 0xaa771c, // Vintage brass / copper
+      color: 0xd97706, // Polished golden brass
       metalness: 0.85,
-      roughness: 0.35
+      roughness: 0.25
     });
 
     const ironMat = new THREE.MeshStandardMaterial({
-      color: 0x222833, // Dark iron trim
+      color: 0x222833,
       metalness: 0.9,
       roughness: 0.4
     });
 
-    // 1. Kerosene Fuel Tank Base (Reservoir)
-    const tankGeo = new THREE.CylinderGeometry(0.22, 0.26, 0.22, 12);
+    // 1. Kerosene Fuel Tank Base
+    const tankGeo = new THREE.CylinderGeometry(0.25, 0.30, 0.24, 12);
     const tank = new THREE.Mesh(tankGeo, brassMat);
-    tank.position.y = 0.11;
+    tank.position.y = 0.12;
     tank.castShadow = true;
     tank.receiveShadow = true;
     lampGroup.add(tank);
 
-    // Wick Adjuster Dial Knob on side of fuel tank
-    const knobGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.1, 8);
-    const knob = new THREE.Mesh(knobGeo, ironMat);
-    knob.position.set(0.22, 0.16, 0);
-    knob.rotation.z = Math.PI * 0.5;
-    lampGroup.add(knob);
-
     // 2. Metallic Burner Assembly
-    const burnerGeo = new THREE.CylinderGeometry(0.12, 0.16, 0.1, 10);
+    const burnerGeo = new THREE.CylinderGeometry(0.14, 0.18, 0.12, 10);
     const burner = new THREE.Mesh(burnerGeo, ironMat);
-    burner.position.y = 0.27;
+    burner.position.y = 0.30;
     lampGroup.add(burner);
 
-    // 3. Tapered Glass Chimney (Klosz szklany nafty)
-    const glassGeo = new THREE.CylinderGeometry(0.09, 0.16, 0.48, 10);
+    // 3. Glowing Glass Chimney
+    const glassGeo = new THREE.CylinderGeometry(0.11, 0.18, 0.52, 10);
     const glassMat = new THREE.MeshStandardMaterial({
       color: 0xffaa00,
       emissive: 0xff8800,
-      emissiveIntensity: 0.7,
+      emissiveIntensity: 1.2,
       transparent: true,
-      opacity: 0.65,
+      opacity: 0.75,
       roughness: 0.1
     });
     const glassChimney = new THREE.Mesh(glassGeo, glassMat);
-    glassChimney.position.y = 0.55;
+    glassChimney.position.y = 0.62;
     lampGroup.add(glassChimney);
 
-    // 4. Inner Teardrop Wick Flame
-    const flameGeo = new THREE.ConeGeometry(0.07, 0.24, 6);
+    // 4. Inner Teardrop Flame
+    const flameGeo = new THREE.ConeGeometry(0.08, 0.26, 6);
     const flameMat = new THREE.MeshStandardMaterial({
-      color: 0xffdd00,
+      color: 0xffe500,
       emissive: 0xffaa00,
-      emissiveIntensity: 1.5
+      emissiveIntensity: 2.5
     });
     const flame = new THREE.Mesh(flameGeo, flameMat);
-    flame.position.y = 0.44;
+    flame.position.y = 0.52;
     lampGroup.add(flame);
 
-    // 5. Metal Top Vent Cap & Wire Carry Loop Handle
-    const capGeo = new THREE.CylinderGeometry(0.1, 0.13, 0.12, 10);
+    // 5. Dedicated Warm Desk Light (Spotlight effect illuminating desk & COD monitor)
+    const lampLight = new THREE.PointLight(0xffaa44, 4.5, 6.0);
+    lampLight.position.set(0, 0.65, 0);
+    lampLight.castShadow = true;
+    lampGroup.add(lampLight);
+
+    // 6. Metal Top Cap & Loop Handle
+    const capGeo = new THREE.CylinderGeometry(0.12, 0.15, 0.14, 10);
     const topCap = new THREE.Mesh(capGeo, brassMat);
-    topCap.position.y = 0.84;
+    topCap.position.y = 0.94;
     lampGroup.add(topCap);
 
-    // Loop Handle on top
-    const handleGeo = new THREE.TorusGeometry(0.1, 0.02, 6, 12);
+    const handleGeo = new THREE.TorusGeometry(0.12, 0.025, 6, 12);
     const handle = new THREE.Mesh(handleGeo, ironMat);
-    handle.position.y = 0.94;
+    handle.position.y = 1.06;
     handle.rotation.x = Math.PI * 0.5;
     lampGroup.add(handle);
 
-    // Wire Guard Cage Strips
-    const wireMat = new THREE.MeshStandardMaterial({ color: 0x11151c, metalness: 0.9 });
-    for (let i = 0; i < 2; i++) {
-      const wireGeo = new THREE.CylinderGeometry(0.015, 0.015, 0.5, 4);
-      const wire = new THREE.Mesh(wireGeo, wireMat);
-      const xOffset = (i === 0 ? 1 : -1) * 0.14;
-      wire.position.set(xOffset, 0.55, 0);
-      lampGroup.add(wire);
-    }
-
-    // Attach raycast metadata to the glass chimney
-    glassChimney.userData = {
+    // Attach raycasting metadata to glass chimney and tank
+    const lampUserData = {
       id: 'lamp',
-      name: 'Lampa Naftowa Magii Kolorów',
-      desc: 'Klikaj w lampę naftową, aby zmieniać paletę barwną i atmosferę scenerii lasu!',
+      name: '🪔 KLASYCZNA LAMPA BIURKOWA',
+      desc: 'Ciepła mosiężna lampa rozświetlająca stanowisko Czarodzieja Lolq. Klikaj w lampę, aby zmieniać paletę oświetlenia lasu i nastroju!',
       icon: '🪔',
       action: () => this.toggleAtmosphere()
     };
+    glassChimney.userData = lampUserData;
+    tank.userData = lampUserData;
 
     this.scene.add(lampGroup);
-    this.interactiveObjects.push(glassChimney);
+    this.interactiveObjects.push(glassChimney, tank);
   }
 
   toggleAtmosphere() {

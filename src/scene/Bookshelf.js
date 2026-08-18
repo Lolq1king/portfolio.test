@@ -4,8 +4,8 @@ export class Bookshelf {
   constructor(scene) {
     this.scene = scene;
     this.group = new THREE.Group();
-    // Positioned prominently to the right of the desk, 100% visible and unobstructed
-    this.group.position.set(3.5, 0, 0.8);
+    // Positioned prominently to the right of the desk with clean passage gap
+    this.group.position.set(4.3, 0, 0.8);
     this.group.rotation.y = -0.42; // Angled elegantly towards the camera
 
     this.interactiveObjects = [];

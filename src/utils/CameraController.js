@@ -15,9 +15,13 @@ export class CameraController {
     this.monitorPos = new THREE.Vector3(0, 2.65, 2.6);
     this.monitorTarget = new THREE.Vector3(0, 2.46, 0.51);
 
+    // Left Gaming Monitor framing view position (Call of Duty: Warzone framing)
+    this.leftMonitorPos = new THREE.Vector3(-1.35, 2.58, 2.10);
+    this.leftMonitorTarget = new THREE.Vector3(-1.55, 2.46, 0.58);
+
     // Bookshelf framing view position (Pulls back to frame entire 3.4m tall & 2.45m wide bookshelf)
-    this.bookshelfPos = new THREE.Vector3(1.22, 2.93, 5.91);
-    this.bookshelfTarget = new THREE.Vector3(3.5, 1.70, 0.8);
+    this.bookshelfPos = new THREE.Vector3(2.02, 2.93, 5.91);
+    this.bookshelfTarget = new THREE.Vector3(4.3, 1.70, 0.8);
 
     this.currentTarget = this.overviewTarget.clone();
     this.isTransitioning = false;
@@ -30,7 +34,7 @@ export class CameraController {
 
     window.addEventListener('mousemove', (e) => this.onMouseMove(e));
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && (this.mode === 'monitor' || this.mode === 'bookshelf')) {
+      if (e.key === 'Escape' && (this.mode === 'monitor' || this.mode === 'left-monitor' || this.mode === 'bookshelf')) {
         this.zoomToOverview();
       }
     });
@@ -58,6 +62,34 @@ export class CameraController {
       x: this.monitorTarget.x,
       y: this.monitorTarget.y,
       z: this.monitorTarget.z,
+      duration: 1.4,
+      ease: 'power3.inOut',
+      onUpdate: () => {
+        this.camera.lookAt(this.currentTarget);
+      },
+      onComplete: () => {
+        this.isTransitioning = false;
+        if (onComplete) onComplete();
+      }
+    });
+  }
+
+  zoomToLeftMonitor(onComplete) {
+    this.mode = 'left-monitor';
+    this.isTransitioning = true;
+
+    gsap.to(this.camera.position, {
+      x: this.leftMonitorPos.x,
+      y: this.leftMonitorPos.y,
+      z: this.leftMonitorPos.z,
+      duration: 1.4,
+      ease: 'power3.inOut'
+    });
+
+    gsap.to(this.currentTarget, {
+      x: this.leftMonitorTarget.x,
+      y: this.leftMonitorTarget.y,
+      z: this.leftMonitorTarget.z,
       duration: 1.4,
       ease: 'power3.inOut',
       onUpdate: () => {

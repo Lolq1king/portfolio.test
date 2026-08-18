@@ -8,13 +8,14 @@ export class ComputerCRT {
 
     this.createComputerTower();
     this.createMonitor();
+    this.createLeftMonitor();
     this.createKeyboardAndMouse();
 
     this.scene.add(this.group);
   }
 
   createComputerTower() {
-    // Desktop Tower placed on the right side of the desk
+    // Desktop Tower placed on the right side of the expanded 5.2m desk
     const towerGeo = new THREE.BoxGeometry(0.7, 1.1, 0.9);
     const towerMat = new THREE.MeshStandardMaterial({
       color: 0x1f2533, // Dark beige-grey retro plastic
@@ -23,7 +24,7 @@ export class ComputerCRT {
     });
 
     const tower = new THREE.Mesh(towerGeo, towerMat);
-    tower.position.set(1.2, 1.71 + 0.55, 0.1);
+    tower.position.set(2.0, 1.71 + 0.55, 0.1);
     tower.castShadow = true;
     tower.receiveShadow = true;
     this.group.add(tower);
@@ -33,9 +34,9 @@ export class ComputerCRT {
     const driveMat = new THREE.MeshStandardMaterial({ color: 0x0f1420, roughness: 0.8 });
     
     const drive1 = new THREE.Mesh(driveGeo, driveMat);
-    drive1.position.set(1.2, 2.6, 0.53);
+    drive1.position.set(2.0, 2.6, 0.53);
     const drive2 = new THREE.Mesh(driveGeo, driveMat);
-    drive2.position.set(1.2, 2.42, 0.53);
+    drive2.position.set(2.0, 2.42, 0.53);
     this.group.add(drive1, drive2);
 
     // Power Button with glowing green LED
@@ -46,7 +47,7 @@ export class ComputerCRT {
       emissiveIntensity: 0.8
     });
     const powerBtn = new THREE.Mesh(btnGeo, btnMat);
-    powerBtn.position.set(1.4, 2.0, 0.53);
+    powerBtn.position.set(2.2, 2.0, 0.53);
     this.group.add(powerBtn);
   }
 
@@ -138,6 +139,72 @@ export class ComputerCRT {
     this.interactiveObjects.push(this.screenMesh);
 
     this.group.add(monitorGroup);
+  }
+
+  createLeftMonitor() {
+    // Second CRT Gaming Monitor on the left side of the expanded 5.2m desk, angled inward
+    const leftMonitorGroup = new THREE.Group();
+    leftMonitorGroup.position.set(-1.55, 1.71, 0.1);
+    leftMonitorGroup.rotation.y = 0.28; // Angled elegantly towards the center
+
+    // Monitor Base Stand
+    const standGeo = new THREE.BoxGeometry(0.65, 0.1, 0.55);
+    const standMat = new THREE.MeshStandardMaterial({ color: 0x1a202c, roughness: 0.7 });
+    const stand = new THREE.Mesh(standGeo, standMat);
+    stand.position.y = 0.05;
+    stand.castShadow = true;
+    leftMonitorGroup.add(stand);
+
+    // Neck
+    const neckGeo = new THREE.CylinderGeometry(0.11, 0.14, 0.2, 8);
+    const neck = new THREE.Mesh(neckGeo, standMat);
+    neck.position.y = 0.15;
+    leftMonitorGroup.add(neck);
+
+    // Monitor Body
+    const bodyGeo = new THREE.BoxGeometry(1.35, 1.05, 0.95);
+    const bodyMat = new THREE.MeshStandardMaterial({
+      color: 0x1a202e,
+      roughness: 0.6
+    });
+    const body = new THREE.Mesh(bodyGeo, bodyMat);
+    body.position.y = 0.75;
+    body.castShadow = true;
+    body.receiveShadow = true;
+    leftMonitorGroup.add(body);
+
+    // Curved Screen Plane
+    const screenGeo = new THREE.PlaneGeometry(1.15, 0.85);
+
+    // Load Call of Duty Warzone screen texture
+    const textureLoader = new THREE.TextureLoader();
+    const codTexture = textureLoader.load('cod_warzone_screen.jpg');
+    codTexture.magFilter = THREE.NearestFilter;
+    codTexture.minFilter = THREE.LinearFilter;
+
+    const screenMat = new THREE.MeshStandardMaterial({
+      map: codTexture,
+      emissiveMap: codTexture,
+      emissive: 0xffffff,
+      emissiveIntensity: 0.9,
+      roughness: 0.25
+    });
+
+    const leftScreenMesh = new THREE.Mesh(screenGeo, screenMat);
+    leftScreenMesh.position.set(0, 0.75, 0.485);
+
+    leftScreenMesh.userData = {
+      id: 'computer-left-warzone',
+      name: '🎮 CALL OF DUTY: WARZONE',
+      desc: 'Drugi monitor Czarodzieja Lolq z odpaloną grą Call of Duty: Warzone w klimacie 16-BIT Pixel Art z widokiem na Verdansk!',
+      icon: '🎯',
+      extraInfo: 'Stanowisko Bojowe | Gra: Call of Duty: Warzone'
+    };
+
+    leftMonitorGroup.add(leftScreenMesh);
+    this.interactiveObjects.push(leftScreenMesh);
+
+    this.group.add(leftMonitorGroup);
   }
 
   createKeyboardAndMouse() {
