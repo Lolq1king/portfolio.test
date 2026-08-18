@@ -57,10 +57,14 @@ export class TerminalUI {
     }
   }
 
-  closeCRTModal() {
+  hideCRTModal() {
     if (this.crtModal) {
       this.crtModal.classList.add('hidden');
     }
+  }
+
+  closeCRTModal() {
+    this.hideCRTModal();
     if (this.cameraController) {
       this.cameraController.zoomToOverview();
     }

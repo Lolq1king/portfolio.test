@@ -151,23 +151,34 @@ class Application {
       });
     }
 
-    // Camera View Toggle Button (Cycles: Las -> Ekran CRT -> Biblioteczka -> Las)
+    // Camera View Toggle Button (Cycles: Las -> Ekran Logowania CRT -> Biblioteczka -> Las)
     const btnCamera = document.getElementById('btn-camera-view');
     const cameraLabel = document.getElementById('camera-view-label');
     if (btnCamera && cameraLabel) {
       btnCamera.addEventListener('click', () => {
         const newMode = this.cameraController.toggleView(
-          () => this.terminalUI.openCRTModal(),
-          () => this.terminalUI.closeCRTModal(),
-          () => this.terminalUI.closeCRTModal()
+          null, // Do NOT automatically open modal; show CRT login screen zoom first!
+          () => this.terminalUI.hideCRTModal(),
+          () => this.terminalUI.hideCRTModal()
         );
 
+        const toast = document.getElementById('instruction-toast');
+
         if (newMode === 'monitor') {
-          cameraLabel.textContent = 'SKUPIENIE: EKRAN CRT';
+          cameraLabel.textContent = 'SKUPIENIE: EKRAN LOGOWANIA CRT';
+          if (toast) {
+            toast.querySelector('p span').textContent = 'Przybliżono na Ekran Logowania CRT! Kliknij w przycisk [ 🔑 ZALOGUJ SIĘ ], aby otworzyć Terminal Czarodzieja.';
+          }
         } else if (newMode === 'bookshelf') {
           cameraLabel.textContent = 'SKUPIENIE: BIBLIOTECZKA';
+          if (toast) {
+            toast.querySelector('p span').textContent = 'Przybliżono widok na Bibliotekę Czarodzieja! Kliknij w książkę, aby zobaczyć opis.';
+          }
         } else {
           cameraLabel.textContent = 'SKUPIENIE: LAS';
+          if (toast) {
+            toast.querySelector('p span').textContent = 'Powrócono do pełnego widoku panoramy lasu.';
+          }
         }
       });
     }
