@@ -29,9 +29,9 @@ export class SceneManager {
       0.1,
       100
     );
-    // Initial camera placement viewing the clearing & desk
-    this.camera.position.set(0, 3.8, 9.2);
-    this.camera.lookAt(0, 2.0, 0);
+    // Initial camera placement viewing the clearing, desk, campfire & distant castle
+    this.camera.position.set(0, 5.2, 13.0);
+    this.camera.lookAt(0, 2.2, -1.0);
 
     this.renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: 'high-performance' });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
