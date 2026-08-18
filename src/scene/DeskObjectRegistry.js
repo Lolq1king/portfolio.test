@@ -103,51 +103,102 @@ export class DeskObjectRegistry {
   }
 
   createAncientLamp() {
-    // Brass Ancient Desk Lantern / Lamp
+    // Vintage Brass Kerosene Oil Lamp (Lampa naftowa) on the desk
     const lampGroup = new THREE.Group();
     lampGroup.position.set(-1.2, 1.72, -0.2);
 
-    // Brass Base
-    const baseGeo = new THREE.CylinderGeometry(0.18, 0.22, 0.1, 10);
     const brassMat = new THREE.MeshStandardMaterial({
-      color: 0xb8860b,
-      metalness: 0.8,
-      roughness: 0.3
+      color: 0xaa771c, // Vintage brass / copper
+      metalness: 0.85,
+      roughness: 0.35
     });
-    const base = new THREE.Mesh(baseGeo, brassMat);
-    base.position.y = 0.05;
-    base.castShadow = true;
-    lampGroup.add(base);
 
-    // Glass Flame Chamber
-    const chamberGeo = new THREE.CylinderGeometry(0.12, 0.12, 0.4, 8);
-    const flameMat = new THREE.MeshStandardMaterial({
+    const ironMat = new THREE.MeshStandardMaterial({
+      color: 0x222833, // Dark iron trim
+      metalness: 0.9,
+      roughness: 0.4
+    });
+
+    // 1. Kerosene Fuel Tank Base (Reservoir)
+    const tankGeo = new THREE.CylinderGeometry(0.22, 0.26, 0.22, 12);
+    const tank = new THREE.Mesh(tankGeo, brassMat);
+    tank.position.y = 0.11;
+    tank.castShadow = true;
+    tank.receiveShadow = true;
+    lampGroup.add(tank);
+
+    // Wick Adjuster Dial Knob on side of fuel tank
+    const knobGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.1, 8);
+    const knob = new THREE.Mesh(knobGeo, ironMat);
+    knob.position.set(0.22, 0.16, 0);
+    knob.rotation.z = Math.PI * 0.5;
+    lampGroup.add(knob);
+
+    // 2. Metallic Burner Assembly
+    const burnerGeo = new THREE.CylinderGeometry(0.12, 0.16, 0.1, 10);
+    const burner = new THREE.Mesh(burnerGeo, ironMat);
+    burner.position.y = 0.27;
+    lampGroup.add(burner);
+
+    // 3. Tapered Glass Chimney (Klosz szklany nafty)
+    const glassGeo = new THREE.CylinderGeometry(0.09, 0.16, 0.48, 10);
+    const glassMat = new THREE.MeshStandardMaterial({
       color: 0xffaa00,
       emissive: 0xff8800,
-      emissiveIntensity: 0.9,
+      emissiveIntensity: 0.7,
       transparent: true,
-      opacity: 0.7
+      opacity: 0.65,
+      roughness: 0.1
     });
-    const chamber = new THREE.Mesh(chamberGeo, flameMat);
-    chamber.position.y = 0.3;
-    lampGroup.add(chamber);
+    const glassChimney = new THREE.Mesh(glassGeo, glassMat);
+    glassChimney.position.y = 0.55;
+    lampGroup.add(glassChimney);
 
-    // Lamp Top Cap
-    const capGeo = new THREE.ConeGeometry(0.2, 0.2, 8);
-    const cap = new THREE.Mesh(capGeo, brassMat);
-    cap.position.y = 0.6;
-    lampGroup.add(cap);
+    // 4. Inner Teardrop Wick Flame
+    const flameGeo = new THREE.ConeGeometry(0.07, 0.24, 6);
+    const flameMat = new THREE.MeshStandardMaterial({
+      color: 0xffdd00,
+      emissive: 0xffaa00,
+      emissiveIntensity: 1.5
+    });
+    const flame = new THREE.Mesh(flameGeo, flameMat);
+    flame.position.y = 0.44;
+    lampGroup.add(flame);
 
-    chamber.userData = {
+    // 5. Metal Top Vent Cap & Wire Carry Loop Handle
+    const capGeo = new THREE.CylinderGeometry(0.1, 0.13, 0.12, 10);
+    const topCap = new THREE.Mesh(capGeo, brassMat);
+    topCap.position.y = 0.84;
+    lampGroup.add(topCap);
+
+    // Loop Handle on top
+    const handleGeo = new THREE.TorusGeometry(0.1, 0.02, 6, 12);
+    const handle = new THREE.Mesh(handleGeo, ironMat);
+    handle.position.y = 0.94;
+    handle.rotation.x = Math.PI * 0.5;
+    lampGroup.add(handle);
+
+    // Wire Guard Cage Strips
+    const wireMat = new THREE.MeshStandardMaterial({ color: 0x11151c, metalness: 0.9 });
+    for (let i = 0; i < 2; i++) {
+      const wireGeo = new THREE.CylinderGeometry(0.015, 0.015, 0.5, 4);
+      const wire = new THREE.Mesh(wireGeo, wireMat);
+      const xOffset = (i === 0 ? 1 : -1) * 0.14;
+      wire.position.set(xOffset, 0.55, 0);
+      lampGroup.add(wire);
+    }
+
+    // Attach raycast metadata to the glass chimney
+    glassChimney.userData = {
       id: 'lamp',
-      name: 'Miedziana Lampa Magii Kolorów',
-      desc: 'Klikaj w lampę, aby zmieniać paletę barwną i atmosferę scenerii lasu!',
-      icon: '🕯️',
+      name: 'Lampa Naftowa Magii Kolorów',
+      desc: 'Klikaj w lampę naftową, aby zmieniać paletę barwną i atmosferę scenerii lasu!',
+      icon: '🪔',
       action: () => this.toggleAtmosphere()
     };
 
     this.scene.add(lampGroup);
-    this.interactiveObjects.push(chamber);
+    this.interactiveObjects.push(glassChimney);
   }
 
   toggleAtmosphere() {
