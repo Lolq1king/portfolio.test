@@ -3,6 +3,8 @@ import { ForestEnvironment } from './scene/ForestEnvironment.js';
 import { WoodenDesk } from './scene/WoodenDesk.js';
 import { ComputerCRT } from './scene/ComputerCRT.js';
 import { DeskObjectRegistry } from './scene/DeskObjectRegistry.js';
+import { Campfire } from './scene/Campfire.js';
+import { DarkCastle } from './scene/DarkCastle.js';
 
 import { CameraController } from './utils/CameraController.js';
 import { RaycastInteraction } from './utils/RaycastInteraction.js';
@@ -18,8 +20,10 @@ class Application {
 
     // 2. Build 3D World Components
     this.forest = new ForestEnvironment(this.sceneManager.scene);
+    this.castle = new DarkCastle(this.sceneManager.scene);
     this.desk = new WoodenDesk(this.sceneManager.scene);
     this.computer = new ComputerCRT(this.sceneManager.scene);
+    this.campfire = new Campfire(this.sceneManager.scene);
     this.deskRegistry = new DeskObjectRegistry(this.sceneManager.scene, this.sceneManager);
 
     // 3. Combine Interactive Objects
@@ -107,8 +111,10 @@ class Application {
 
     const time = performance.now() * 0.001;
 
-    // Update particles, fireflies and camera
+    // Update particles, fireflies, campfire, castle and camera
     this.forest.update(time);
+    this.campfire.update(time);
+    this.castle.update(time);
     this.cameraController.update();
     this.sceneManager.render(time);
   }
