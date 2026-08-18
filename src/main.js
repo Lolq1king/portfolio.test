@@ -65,12 +65,20 @@ class Application {
     if (!data) return;
 
     if (data.id === 'computer-crt') {
-      // Zoom camera to central main CRT monitor & open CRT Terminal Modal
-      this.cameraController.zoomToMonitor(() => {
+      if (this.cameraController.mode !== 'monitor') {
+        // 1st click: Zoom camera directly to central CRT monitor screen
+        this.cameraController.zoomToMonitor();
+        const cameraLabel = document.getElementById('camera-view-label');
+        if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: EKRAN LOGOWANIA CRT';
+
+        const toast = document.getElementById('instruction-toast');
+        if (toast) {
+          toast.querySelector('p span').textContent = 'Przybliżono na Ekran Logowania CRT! Kliknij w przycisk [ 🔑 ZALOGUJ SIĘ ], aby otworzyć Terminal Czarodzieja.';
+        }
+      } else {
+        // 2nd click (while zoomed in): Enter wizard terminal modal!
         this.terminalUI.openCRTModal();
-      });
-      const cameraLabel = document.getElementById('camera-view-label');
-      if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: EKRAN CRT';
+      }
     } else if (data.id === 'computer-left-warzone') {
       if (this.cameraController.mode === 'left-monitor') {
         // Re-clicking left monitor while zoomed in returns camera back to initial overview state!

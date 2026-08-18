@@ -85,32 +85,13 @@ export class ComputerCRT {
     // Curved CRT Screen Frame
     const screenGeo = new THREE.PlaneGeometry(1.15, 0.85);
 
-    // Procedural Phosphor CRT Screen Canvas
+    // Procedural Phosphor CRT Dark Fantasy Login Screen Canvas
     const canvas = document.createElement('canvas');
-    canvas.width = 256;
-    canvas.height = 192;
+    canvas.width = 512;
+    canvas.height = 384;
     const ctx = canvas.getContext('2d');
     
-    // Dark CRT background
-    ctx.fillStyle = '#0a0f1d';
-    ctx.fillRect(0, 0, 256, 192);
-    
-    // Pixelated terminal text preview
-    ctx.fillStyle = '#00f3ff';
-    ctx.font = '16px monospace';
-    ctx.fillText('> ELDRITCH OS v1.0.4', 15, 30);
-    ctx.fillStyle = '#39ff14';
-    ctx.fillText('STATUS: ONLINE', 15, 55);
-    ctx.fillText('USER: LVL 1 APPRENTICE', 15, 80);
-    
-    ctx.fillStyle = '#ffb700';
-    ctx.fillText('[ CLICK MONITOR TO ENTER ]', 10, 140);
-
-    // CRT Scanlines on texture
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
-    for (let y = 0; y < 192; y += 4) {
-      ctx.fillRect(0, y, 256, 2);
-    }
+    this.drawDarkFantasyLoginScreen(ctx, 512, 384);
 
     const screenTexture = new THREE.CanvasTexture(canvas);
     screenTexture.magFilter = THREE.NearestFilter;
@@ -230,5 +211,136 @@ export class ComputerCRT {
     mouse.position.set(0.75, 1.75, 0.5);
     mouse.castShadow = true;
     this.group.add(mouse);
+  }
+
+  drawDarkFantasyLoginScreen(ctx, width, height) {
+    // 1. Dark Gothic Radial Gradient Background
+    const bgGrad = ctx.createRadialGradient(width / 2, height / 2, 40, width / 2, height / 2, width * 0.7);
+    bgGrad.addColorStop(0, '#1c0b2b'); // Deep warlock purple core
+    bgGrad.addColorStop(0.6, '#0b0614');
+    bgGrad.addColorStop(1, '#030206');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, width, height);
+
+    // 2. Ornate Gothic Border Frame
+    ctx.strokeStyle = '#d97706'; // Gold trim
+    ctx.lineWidth = 4;
+    ctx.strokeRect(10, 10, width - 20, height - 20);
+
+    ctx.strokeStyle = '#7c2d12'; // Crimson inner accent line
+    ctx.lineWidth = 2;
+    ctx.strokeRect(16, 16, width - 32, height - 32);
+
+    // Corner Ornaments (Golden Diamonds)
+    const drawDiamond = (cx, cy, r) => {
+      ctx.fillStyle = '#f59e0b';
+      ctx.beginPath();
+      ctx.moveTo(cx, cy - r);
+      ctx.lineTo(cx + r, cy);
+      ctx.lineTo(cx, cy + r);
+      ctx.lineTo(cx - r, cy);
+      ctx.closePath();
+      ctx.fill();
+    };
+    drawDiamond(20, 20, 6);
+    drawDiamond(width - 20, 20, 6);
+    drawDiamond(20, height - 20, 6);
+    drawDiamond(width - 20, height - 20, 6);
+
+    // 3. Header Crest & Title
+    ctx.textAlign = 'center';
+    
+    // Magic Rune Crest Icon
+    ctx.fillStyle = '#a855f7';
+    ctx.font = 'bold 22px monospace';
+    ctx.fillText('⚡  🔮 WARLOCK GUILD 🔮  ⚡', width / 2, 45);
+
+    // Main Title
+    ctx.fillStyle = '#fbbf24'; // Glowing Gold
+    ctx.font = 'bold 20px monospace';
+    ctx.fillText('ELDRITCH OS v3.8 (DARK FANTASY)', width / 2, 75);
+
+    ctx.fillStyle = '#38bdf8'; // Cyan Subtitle
+    ctx.font = '12px monospace';
+    ctx.fillText('SYSTEM LOGOWANIA CZARODZIEJA LOLQ', width / 2, 95);
+
+    // 4. Central Gothic Login Container
+    const boxX = 64;
+    const boxY = 110;
+    const boxW = width - 128;
+    const boxH = 210;
+
+    // Translucent Container Box
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
+    ctx.fillRect(boxX, boxY, boxW, boxH);
+
+    ctx.strokeStyle = '#9333ea'; // Purple arcane outline
+    ctx.lineWidth = 2;
+    ctx.strokeRect(boxX, boxY, boxW, boxH);
+
+    ctx.textAlign = 'left';
+
+    // --- Input Field 1: UŻYTKOWNIK ---
+    ctx.fillStyle = '#c084fc';
+    ctx.font = 'bold 12px monospace';
+    ctx.fillText('🔮 UŻYTKOWNIK (USERNAME):', boxX + 24, boxY + 32);
+
+    // Field 1 Box
+    ctx.fillStyle = '#020617';
+    ctx.fillRect(boxX + 24, boxY + 40, boxW - 48, 32);
+    ctx.strokeStyle = '#3b82f6';
+    ctx.strokeRect(boxX + 24, boxY + 40, boxW - 48, 32);
+
+    ctx.fillStyle = '#00f3ff';
+    ctx.font = 'bold 14px monospace';
+    ctx.fillText('LOLQ_WIZARD_LVL28', boxX + 36, boxY + 61);
+
+    // --- Input Field 2: HASŁO ASTRALNE ---
+    ctx.fillStyle = '#f59e0b';
+    ctx.font = 'bold 12px monospace';
+    ctx.fillText('🔑 HASŁO ASTRALNE (ANCIENT RUNES):', boxX + 24, boxY + 98);
+
+    // Field 2 Box
+    ctx.fillStyle = '#020617';
+    ctx.fillRect(boxX + 24, boxY + 106, boxW - 48, 32);
+    ctx.strokeStyle = '#ef4444';
+    ctx.strokeRect(boxX + 24, boxY + 106, boxW - 48, 32);
+
+    ctx.fillStyle = '#f43f5e';
+    ctx.font = 'bold 16px monospace';
+    ctx.fillText('ᚱ ᚢ ᚾ ᛖ ᛋ ✦ ✶ ⚡ 🔮 ⚡', boxX + 36, boxY + 127);
+
+    // --- Interactive "ZALOGUJ SIĘ" Button ---
+    const btnX = boxX + 32;
+    const btnY = boxY + 150;
+    const btnW = boxW - 64;
+    const btnH = 40;
+
+    const btnGrad = ctx.createLinearGradient(btnX, btnY, btnX, btnY + btnH);
+    btnGrad.addColorStop(0, '#d97706');
+    btnGrad.addColorStop(0.5, '#b45309');
+    btnGrad.addColorStop(1, '#78350f');
+    ctx.fillStyle = btnGrad;
+    ctx.fillRect(btnX, btnY, btnW, btnH);
+
+    ctx.strokeStyle = '#fef08a'; // Bright gold rim
+    ctx.lineWidth = 2;
+    ctx.strokeRect(btnX, btnY, btnW, btnH);
+
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 13px monospace';
+    ctx.fillText('🔑 [ ZALOGUJ SIĘ DO TERMINALA ] ▶', width / 2, btnY + 25);
+
+    // 5. Bottom Interactive Prompt
+    ctx.fillStyle = '#38bdf8';
+    ctx.font = 'bold 12px monospace';
+    ctx.fillText('KLIKNIJ PRZYCISK ZALOGUJ, ABY OTWORZYĆ SYSTEM', width / 2, height - 26);
+
+    // 6. Scanlines Overlay
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.22)';
+    for (let y = 0; y < height; y += 4) {
+      ctx.fillRect(0, y, width, 2);
+    }
   }
 }
