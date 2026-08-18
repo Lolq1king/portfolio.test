@@ -12,6 +12,8 @@ export class DeskObjectRegistry {
   initDefaultItems() {
     this.createPotionBottle();
     this.createAncientLamp();
+    this.createUnderDeskHeadphones();
+    this.createUnderDeskController();
   }
 
   createPotionBottle() {
@@ -140,6 +142,149 @@ export class DeskObjectRegistry {
 
     this.scene.add(lampGroup);
     this.interactiveObjects.push(glassChimney, tank);
+  }
+
+  createUnderDeskHeadphones() {
+    // Under-desk mounted gaming headphones on the left side of tabletop
+    const hpGroup = new THREE.Group();
+    hpGroup.position.set(-1.4, 1.35, 0.6); // Hanging under left front lip of desk
+
+    // Metallic Under-Desk Hanger Hook
+    const hookGeo = new THREE.BoxGeometry(0.04, 0.16, 0.12);
+    const hookMat = new THREE.MeshStandardMaterial({ color: 0x1e2430, metalness: 0.8, roughness: 0.3 });
+    const hook = new THREE.Mesh(hookGeo, hookMat);
+    hook.position.y = 0.10;
+    hpGroup.add(hook);
+
+    // Headphones Padded Headband (Arch)
+    const bandGeo = new THREE.TorusGeometry(0.14, 0.025, 8, 16, Math.PI);
+    const bandMat = new THREE.MeshStandardMaterial({ color: 0x0f141d, roughness: 0.6 });
+    const headband = new THREE.Mesh(bandGeo, bandMat);
+    headband.rotation.z = Math.PI;
+    headband.position.y = 0.04;
+    hpGroup.add(headband);
+
+    // Dual Ear Cups (Left & Right)
+    const cupMat = new THREE.MeshStandardMaterial({ color: 0x1a202c, roughness: 0.5 });
+    const ledMat = new THREE.MeshStandardMaterial({ color: 0x00f3ff, emissive: 0x00f3ff, emissiveIntensity: 0.8 });
+
+    const leftCupGroup = new THREE.Group();
+    leftCupGroup.position.set(-0.14, -0.08, 0);
+
+    const cupGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.06, 12);
+    const leftCup = new THREE.Mesh(cupGeo, cupMat);
+    leftCup.rotation.z = Math.PI * 0.5;
+    leftCupGroup.add(leftCup);
+
+    // RGB LED Ring on Ear Cup
+    const ledRingGeo = new THREE.TorusGeometry(0.065, 0.008, 6, 16);
+    const leftLedRing = new THREE.Mesh(ledRingGeo, ledMat);
+    leftLedRing.rotation.y = Math.PI * 0.5;
+    leftCupGroup.add(leftLedRing);
+
+    const rightCupGroup = leftCupGroup.clone();
+    rightCupGroup.position.set(0.14, -0.08, 0);
+
+    hpGroup.add(leftCupGroup, rightCupGroup);
+
+    // Attached Mic Boom Arm
+    const micGeo = new THREE.CylinderGeometry(0.01, 0.01, 0.18, 6);
+    const micMat = new THREE.MeshStandardMaterial({ color: 0x0a0e17, roughness: 0.8 });
+    const mic = new THREE.Mesh(micGeo, micMat);
+    mic.position.set(-0.16, -0.15, 0.08);
+    mic.rotation.x = Math.PI * 0.35;
+    hpGroup.add(mic);
+
+    // Raycast Interaction Metadata
+    headband.userData = {
+      id: 'underdesk-headphones',
+      name: '🎧 SŁUCHAWKI GAMINGOWE',
+      desc: 'Podwieszone pod blatem biurka słuchawki wokółuszne z mikrofonem i podświetleniem cyan LED. Gotowe do gry i rozmów!',
+      icon: '🎧'
+    };
+    leftCup.userData = headband.userData;
+
+    this.scene.add(hpGroup);
+    this.interactiveObjects.push(headband, leftCup);
+  }
+
+  createUnderDeskController() {
+    // Under-desk mounted gamepad / controller on the left side of tabletop
+    const padGroup = new THREE.Group();
+    padGroup.position.set(-0.75, 1.34, 0.6); // Hanging under front-left edge of desk
+
+    // Metallic Cradle Hanger Bracket
+    const bracketGeo = new THREE.BoxGeometry(0.24, 0.12, 0.08);
+    const bracketMat = new THREE.MeshStandardMaterial({ color: 0x1e2430, metalness: 0.8, roughness: 0.3 });
+    const bracket = new THREE.Mesh(bracketGeo, bracketMat);
+    bracket.position.y = 0.10;
+    padGroup.add(bracket);
+
+    // Main Gamepad Body (Dual-grip ergonomics)
+    const bodyMat = new THREE.MeshStandardMaterial({ color: 0x161b26, roughness: 0.6 });
+    const padBody = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.12, 0.22), bodyMat);
+    padBody.position.y = -0.02;
+    padGroup.add(padBody);
+
+    // Left & Right Hand Grips
+    const gripGeo = new THREE.CylinderGeometry(0.06, 0.07, 0.22, 10);
+    const leftGrip = new THREE.Mesh(gripGeo, bodyMat);
+    leftGrip.position.set(-0.18, -0.06, 0.03);
+    leftGrip.rotation.z = 0.3;
+
+    const rightGrip = new THREE.Mesh(gripGeo, bodyMat);
+    rightGrip.position.set(0.18, -0.06, 0.03);
+    rightGrip.rotation.z = -0.3;
+
+    padGroup.add(leftGrip, rightGrip);
+
+    // Dual Analog Sticks
+    const stickMat = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.4 });
+    const leftStick = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.025, 0.04, 8), stickMat);
+    leftStick.position.set(-0.08, 0.05, 0.03);
+
+    const rightStick = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.025, 0.04, 8), stickMat);
+    rightStick.position.set(0.06, 0.05, -0.02);
+
+    padGroup.add(leftStick, rightStick);
+
+    // D-Pad Cross
+    const dpadMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.8 });
+    const dpad = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.02, 0.08), dpadMat);
+    dpad.position.set(-0.11, 0.05, -0.02);
+    padGroup.add(dpad);
+
+    // Glowing ABXY Action Buttons (RGB Emissive)
+    const btnGeo = new THREE.SphereGeometry(0.02, 6, 6);
+    const colors = [0xef4444, 0x3b82f6, 0x10b981, 0xf59e0b]; // Red, Blue, Green, Yellow
+    const btnPositions = [
+      [0.13, 0.05, 0.03],  // A
+      [0.16, 0.05, 0.0],   // B
+      [0.10, 0.05, 0.0],   // X
+      [0.13, 0.05, -0.03]  // Y
+    ];
+
+    btnPositions.forEach(([x, y, z], idx) => {
+      const btnMat = new THREE.MeshStandardMaterial({
+        color: colors[idx],
+        emissive: colors[idx],
+        emissiveIntensity: 0.8
+      });
+      const actionBtn = new THREE.Mesh(btnGeo, btnMat);
+      actionBtn.position.set(x, y, z);
+      padGroup.add(actionBtn);
+    });
+
+    // Raycast Interaction Metadata
+    padBody.userData = {
+      id: 'underdesk-controller',
+      name: '🎮 KONTROLER DO GIER (GAMEPAD)',
+      desc: 'Podwieszony pod blatem biurka bezprzewodowy pad do gier z podświetleniem RGB i gałkami analogowymi. Gotowy do gry w Warzone i zręcznościówki!',
+      icon: '🎮'
+    };
+
+    this.scene.add(padGroup);
+    this.interactiveObjects.push(padBody);
   }
 
   toggleAtmosphere() {

@@ -4,7 +4,8 @@ export class Campfire {
   constructor(scene) {
     this.scene = scene;
     this.group = new THREE.Group();
-    this.group.position.set(-3.8, 0, -1.2); // Positioned behind and left of the wooden desk
+    // Positioned in the left foreground of the screen
+    this.group.position.set(-3.0, 0, 3.2);
 
     this.initStones();
     this.initLogs();

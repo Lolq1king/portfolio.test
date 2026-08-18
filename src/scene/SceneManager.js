@@ -81,9 +81,9 @@ export class SceneManager {
     this.monitorLight.position.set(0, 2.5, 0.4);
     this.scene.add(this.monitorLight);
 
-    // 7. Bioluminescent Mushroom Light
-    this.shroomLight = new THREE.PointLight(0x55ffdd, 3.5, 8);
-    this.shroomLight.position.set(2.5, 0.5, 2.0);
+    // 7. Bioluminescent Mushroom Light under forest trees
+    this.shroomLight = new THREE.PointLight(0x55ffdd, 2.2, 6);
+    this.shroomLight.position.set(-5.8, 0.5, 1.2);
     this.scene.add(this.shroomLight);
 
     // 8. Dedicated Warm Bookshelf Illumination

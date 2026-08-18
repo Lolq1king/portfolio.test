@@ -32,7 +32,8 @@ class Application {
     const allInteractiveObjects = [
       ...this.computer.interactiveObjects,
       ...this.deskRegistry.getInteractiveObjects(),
-      ...this.bookshelf.interactiveObjects
+      ...this.bookshelf.interactiveObjects,
+      ...this.forest.getInteractiveObjects()
     ];
 
     // 4. Initialize Camera & Interaction Controllers
