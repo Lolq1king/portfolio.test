@@ -13,7 +13,7 @@ Scena przedstawia tajemniczy, klimatyczny las dark fantasy w nocy/zmierzchu, w k
 - **SEO & Copywriter:** Optymalizacja metadanych, tekstowych opisów umiejętności oraz projektów w klimacie Dark Fantasy RPG.
 
 ## 3. Paleta Kolorów i Stylistyka Wizualna
-- **Estetyka:** Dark Fantasy Pixel Art (skalowalna rozdzielczość Crisp HD, 16-BIT Retro oraz 8-BIT z efektami CRT).
+- **Estetyka:** Dark Fantasy Pixel Art (tryby rozdzielczości: Crisp HD oraz 16-BIT Retro z efektami CRT).
 - **Tło / Las, Pełnia Księżyca & Oświetlony Zamek:** Deep Night Navy (`#060913`), Silvery Blue Moonlight (`#a5c8ff`), Direct Castle Moonbeam (`#b8d4ff`), Dark Emerald Canopy (`#0a1a14`), Mystical Purple Fog (`#160c28`), Obsidian (`#182338`), Castle Window Amber Glow (`#ffaa00`).
 - **Biurko / Elementy Drewniane & Duże Ognisko:** Oak Bark (`#2d1b0e`), Weathered Wood (`#4a2e1b`), Aged Iron (`#1c1815`), Campfire Amber Flame (`#ff6600`).
 - **Oświetlenie & Efekty Glow:** Full Moon Glow (`#d9ecff`), Fungi Bioluminescence Cyan (`#00f3ff`), Rune Gold (`#ffb700`), CRT Phosphor Green (`#39ff14`), Crimson Rune (`#ff2a5f`), Campfire Firelight (`#ff6600`).

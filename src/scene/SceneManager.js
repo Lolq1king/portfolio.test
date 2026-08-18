@@ -7,8 +7,8 @@ export class SceneManager {
   constructor(container) {
     this.container = container;
 
-    // Available Pixel Scales: Crisp HD (size 1), 16-bit Retro (size 3), 8-bit Pixel (size 5)
-    this.pixelScales = [1, 3, 5];
+    // Available Pixel Scales: Crisp HD (size 1) and 16-bit Retro (size 3)
+    this.pixelScales = [1, 3];
     this.currentPixelIndex = 0;
 
     this.initScene();
@@ -123,7 +123,6 @@ export class SceneManager {
     this.pixelPass.setPixelSize(newSize);
     
     if (newSize === 3) return 'TRYB: 16-BIT';
-    if (newSize === 5) return 'TRYB: 8-BIT';
     return 'TRYB: CRISP HD';
   }
 
