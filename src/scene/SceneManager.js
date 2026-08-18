@@ -7,8 +7,8 @@ export class SceneManager {
   constructor(container) {
     this.container = container;
 
-    // Pixel scales: 8-bit (pixel size 5), 16-bit (pixel size 3), Crisp (pixel size 1)
-    this.pixelScales = [5, 3, 1];
+    // Pixel scale locked exclusively to Crisp HD (pixel size 1) as requested
+    this.pixelScales = [1];
     this.currentPixelIndex = 0;
 
     this.initScene();
@@ -95,14 +95,9 @@ export class SceneManager {
   }
 
   togglePixelScale() {
-    this.currentPixelIndex = (this.currentPixelIndex + 1) % this.pixelScales.length;
-    const newSize = this.pixelScales[this.currentPixelIndex];
-    this.pixelPass.setPixelSize(newSize);
-    
-    let label = 'PIXEL: 8-BIT';
-    if (newSize === 3) label = 'PIXEL: 16-BIT';
-    if (newSize === 1) label = 'PIXEL: CRISP HD';
-    return label;
+    this.currentPixelIndex = 0;
+    this.pixelPass.setPixelSize(1);
+    return 'TRYB: CRISP HD';
   }
 
   onWindowResize() {
