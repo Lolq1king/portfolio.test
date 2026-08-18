@@ -16,20 +16,20 @@ export class Campfire {
   }
 
   initStones() {
-    // Ring of 10 larger campfire rocks
+    // Ring of 10 medium campfire rocks
     const stoneMat = new THREE.MeshStandardMaterial({
       color: 0x1e2430,
       roughness: 0.9,
       flatShading: true
     });
 
-    const count = 10;
-    const radius = 0.85;
+    const count = 9;
+    const radius = 0.65;
     for (let i = 0; i < count; i++) {
       const angle = (i / count) * Math.PI * 2;
-      const rockGeo = new THREE.DodecahedronGeometry(0.18 + Math.random() * 0.06, 0);
+      const rockGeo = new THREE.DodecahedronGeometry(0.14 + Math.random() * 0.04, 0);
       const stone = new THREE.Mesh(rockGeo, stoneMat);
-      stone.position.set(Math.cos(angle) * radius, 0.1, Math.sin(angle) * radius);
+      stone.position.set(Math.cos(angle) * radius, 0.08, Math.sin(angle) * radius);
       stone.rotation.set(Math.random(), Math.random(), Math.random());
       stone.castShadow = true;
       stone.receiveShadow = true;
@@ -38,16 +38,16 @@ export class Campfire {
   }
 
   initLogs() {
-    // 4 larger crossed wooden logs
+    // 4 crossed wooden logs
     const logMat = new THREE.MeshStandardMaterial({
       color: 0x1b110a,
       roughness: 0.95
     });
 
     for (let i = 0; i < 4; i++) {
-      const logGeo = new THREE.CylinderGeometry(0.09, 0.11, 1.0, 6);
+      const logGeo = new THREE.CylinderGeometry(0.07, 0.08, 0.8, 6);
       const log = new THREE.Mesh(logGeo, logMat);
-      log.position.y = 0.16;
+      log.position.y = 0.14;
       log.rotation.z = Math.PI * 0.4;
       log.rotation.y = (i / 4) * Math.PI;
       log.castShadow = true;
@@ -56,39 +56,39 @@ export class Campfire {
   }
 
   initFlames() {
-    // Larger Flame meshes
+    // Proportionate Flame meshes
     const flameMat = new THREE.MeshStandardMaterial({
       color: 0xff4500,
       emissive: 0xff6600,
-      emissiveIntensity: 1.2,
+      emissiveIntensity: 1.1,
       transparent: true,
       opacity: 0.9,
       flatShading: true
     });
 
-    this.flameCone1 = new THREE.Mesh(new THREE.ConeGeometry(0.65, 1.4, 6), flameMat);
-    this.flameCone1.position.y = 0.8;
+    this.flameCone1 = new THREE.Mesh(new THREE.ConeGeometry(0.48, 1.05, 6), flameMat);
+    this.flameCone1.position.y = 0.6;
 
-    this.flameCone2 = new THREE.Mesh(new THREE.ConeGeometry(0.48, 1.1, 6), flameMat);
-    this.flameCone2.position.set(0.1, 0.65, -0.1);
+    this.flameCone2 = new THREE.Mesh(new THREE.ConeGeometry(0.35, 0.8, 6), flameMat);
+    this.flameCone2.position.set(0.08, 0.5, -0.08);
 
     const innerFlameMat = new THREE.MeshStandardMaterial({
       color: 0xffea00,
       emissive: 0xffcc00,
-      emissiveIntensity: 1.5,
+      emissiveIntensity: 1.4,
       flatShading: true
     });
 
-    this.flameInner = new THREE.Mesh(new THREE.ConeGeometry(0.32, 0.85, 6), innerFlameMat);
-    this.flameInner.position.y = 0.6;
+    this.flameInner = new THREE.Mesh(new THREE.ConeGeometry(0.24, 0.65, 6), innerFlameMat);
+    this.flameInner.position.y = 0.45;
 
     this.group.add(this.flameCone1, this.flameCone2, this.flameInner);
   }
 
   initLight() {
-    // Powerful warm campfire light illuminating the forest clearing
-    this.fireLight = new THREE.PointLight(0xff6600, 7.5, 16);
-    this.fireLight.position.set(0, 1.0, 0);
+    // Warm campfire light illuminating the forest clearing
+    this.fireLight = new THREE.PointLight(0xff6600, 5.5, 14);
+    this.fireLight.position.set(0, 0.8, 0);
     this.fireLight.castShadow = true;
     this.fireLight.shadow.mapSize.width = 1024;
     this.fireLight.shadow.mapSize.height = 1024;

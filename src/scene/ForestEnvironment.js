@@ -51,31 +51,34 @@ export class ForestEnvironment {
   }
 
   initTrees() {
-    // Generate dark fantasy pine trees framing the clearing (behind the desk and on flanks)
-    // Front corridor (z > 1 and |x| < 5) is kept completely open for an unobstructed view of the desk!
+    // Generate dark fantasy pine trees framing the clearing (leaving castle & desk corridor completely open)
     const treePositions = [];
 
-    // 1. Dense background trees (behind desk, z < -1)
-    const bgCount = 20;
-    for (let i = 0; i < bgCount; i++) {
-      const angle = Math.PI + (i / (bgCount - 1)) * Math.PI + (Math.random() * 0.15 - 0.07);
-      const dist = 7.5 + Math.random() * 5.5;
-      const x = Math.cos(angle) * dist;
-      const z = Math.sin(angle) * dist;
-      treePositions.push({ x, z, scale: 0.85 + Math.random() * 0.55 });
+    // 1. Rear flank trees (leaving central corridor |x| < 4.5 wide open for the castle!)
+    const rearCount = 10;
+    for (let i = 0; i < rearCount; i++) {
+      // Rear Left
+      const xL = -4.5 - Math.random() * 5.5;
+      const zL = -4.0 - Math.random() * 6.0;
+      treePositions.push({ x: xL, z: zL, scale: 0.85 + Math.random() * 0.55 });
+
+      // Rear Right
+      const xR = 4.5 + Math.random() * 5.5;
+      const zR = -4.0 - Math.random() * 6.0;
+      treePositions.push({ x: xR, z: zR, scale: 0.85 + Math.random() * 0.55 });
     }
 
-    // 2. Left and Right flank trees (leaving central corridor x: -4.5 to +4.5 open)
-    const flankCount = 10;
+    // 2. Side flank trees along the clearing
+    const flankCount = 8;
     for (let i = 0; i < flankCount; i++) {
       // Left side
-      const xLeft = -4.8 - Math.random() * 4.5;
-      const zLeft = (Math.random() * 8) - 2;
+      const xLeft = -5.0 - Math.random() * 4.0;
+      const zLeft = (Math.random() * 7) - 1.5;
       treePositions.push({ x: xLeft, z: zLeft, scale: 0.9 + Math.random() * 0.5 });
 
       // Right side
-      const xRight = 4.8 + Math.random() * 4.5;
-      const zRight = (Math.random() * 8) - 2;
+      const xRight = 5.0 + Math.random() * 4.0;
+      const zRight = (Math.random() * 7) - 1.5;
       treePositions.push({ x: xRight, z: zRight, scale: 0.9 + Math.random() * 0.5 });
     }
 
@@ -127,31 +130,31 @@ export class ForestEnvironment {
   }
 
   initRocksAndFungi() {
-    // Cluster of rocks near the bioluminescent fungi
+    // Rocks placed safely to the side/back so they DO NOT block the glowing mushrooms
     const rockMat = new THREE.MeshStandardMaterial({
       color: 0x1b2333,
       roughness: 0.9,
       flatShading: true
     });
 
-    for (let i = 0; i < 8; i++) {
-      const rockGeo = new THREE.DodecahedronGeometry(0.4 + Math.random() * 0.4, 1);
+    for (let i = 0; i < 6; i++) {
+      const rockGeo = new THREE.DodecahedronGeometry(0.25 + Math.random() * 0.25, 1);
       const rock = new THREE.Mesh(rockGeo, rockMat);
-      const angle = 0.8 + (i * 0.3);
-      const r = 2.2 + Math.random() * 0.8;
-      rock.position.set(Math.cos(angle) * r, 0.2, Math.sin(angle) * r);
+      // Place rocks behind the mushrooms (x: 3.2..4.2, z: 2.2..3.2)
+      const rx = 3.2 + Math.random() * 1.0;
+      const rz = 2.2 + Math.random() * 1.0;
+      rock.position.set(rx, 0.15, rz);
       rock.rotation.set(Math.random(), Math.random(), Math.random());
-      rock.scale.set(1, 0.6 + Math.random() * 0.5, 1);
       rock.castShadow = true;
       rock.receiveShadow = true;
       this.scene.add(rock);
     }
 
-    // Bioluminescent Mushrooms
+    // Bioluminescent Mushrooms fully exposed on the right side of the desk
     const mushroomCapMat = new THREE.MeshStandardMaterial({
       color: 0x00f3ff,
       emissive: 0x00f3ff,
-      emissiveIntensity: 0.6,
+      emissiveIntensity: 0.9,
       roughness: 0.2
     });
     const mushroomStemMat = new THREE.MeshStandardMaterial({
@@ -159,16 +162,17 @@ export class ForestEnvironment {
       roughness: 0.5
     });
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 7; i++) {
       const shroomGroup = new THREE.Group();
-      const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.06, 0.3, 6), mushroomStemMat);
-      stem.position.y = 0.15;
-      const cap = new THREE.Mesh(new THREE.SphereGeometry(0.12, 8, 6, 0, Math.PI * 2, 0, Math.PI * 0.5), mushroomCapMat);
-      cap.position.y = 0.3;
+      const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.06, 0.35, 6), mushroomStemMat);
+      stem.position.y = 0.175;
+      const cap = new THREE.Mesh(new THREE.SphereGeometry(0.14, 8, 6, 0, Math.PI * 2, 0, Math.PI * 0.5), mushroomCapMat);
+      cap.position.y = 0.35;
 
       shroomGroup.add(stem, cap);
-      shroomGroup.position.set(2.2 + Math.random() * 0.8, 0, 1.8 + Math.random() * 0.6);
-      shroomGroup.scale.setScalar(0.8 + Math.random() * 0.6);
+      // Exposed clearly at x: 2.2..2.8, z: 0.8..1.5
+      shroomGroup.position.set(2.2 + (i * 0.12), 0, 0.8 + (i * 0.15));
+      shroomGroup.scale.setScalar(0.9 + Math.random() * 0.5);
       this.scene.add(shroomGroup);
     }
   }
