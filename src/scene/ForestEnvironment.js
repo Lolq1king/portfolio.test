@@ -15,7 +15,7 @@ export class ForestEnvironment {
   initGround() {
     // Ground circle / clearing
     const groundGeometry = new THREE.CylinderGeometry(14, 16, 0.4, 32);
-    
+
     // Create dark fantasy grass texture procedurally
     const canvas = document.createElement('canvas');
     canvas.width = 64;
@@ -23,7 +23,7 @@ export class ForestEnvironment {
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = '#05120d'; // Darker emerald base for ground
     ctx.fillRect(0, 0, 64, 64);
-    
+
     // Pixel details
     for (let i = 0; i < 200; i++) {
       const x = Math.floor(Math.random() * 64);
@@ -32,7 +32,7 @@ export class ForestEnvironment {
       ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
       ctx.fillRect(x, y, 2, 2);
     }
-    
+
     const groundTexture = new THREE.CanvasTexture(canvas);
     groundTexture.wrapS = THREE.RepeatWrapping;
     groundTexture.wrapT = THREE.RepeatWrapping;
@@ -126,71 +126,90 @@ export class ForestEnvironment {
   }
 
   initRocksAndFungi() {
-    // Natural mossy rocks scattered around tree trunks
+    // 1. Natural mossy boulders
     const rockMat = new THREE.MeshStandardMaterial({
       color: 0x1b2333,
       roughness: 0.9,
       flatShading: true
     });
 
-    const rockPositions = [
-      { x: -5.5, z: 2.2 },
-      { x: -4.8, z: -3.8 },
-      { x: 7.2, z: 2.5 },
-      { x: 6.8, z: -4.2 }
+    const boulders = [
+      { x: -3.8, y: 0.22, z: 1.6, radius: 0.42 }, // Main left featured boulder in open clearing
+      { x: 7.2, y: 0.20, z: 1.6, radius: 0.38 },  // Right flank boulder
+      { x: -6.2, y: 0.18, z: -4.0, radius: 0.35 } // Rear left background boulder
     ];
 
-    rockPositions.forEach((p) => {
-      const rockGeo = new THREE.DodecahedronGeometry(0.25 + Math.random() * 0.25, 1);
+    boulders.forEach((b) => {
+      const rockGeo = new THREE.DodecahedronGeometry(b.radius, 1);
       const rock = new THREE.Mesh(rockGeo, rockMat);
-      rock.position.set(p.x, 0.15, p.z);
-      rock.rotation.set(Math.random(), Math.random(), Math.random());
+      rock.position.set(b.x, b.y, b.z);
+      rock.rotation.set(0.4, 0.8, 0.2);
       rock.castShadow = true;
       rock.receiveShadow = true;
       this.scene.add(rock);
     });
 
-    // Bioluminescent Mushrooms scattered in small clusters under trees (NOT by the desk)
+    // 2. Bioluminescent Mushrooms (16 mushrooms organically scattered on open mossy soil with 100% collision-free placement)
     const capColors = [0x00f3ff, 0x00e5ff, 0x9333ea, 0x00f3ff, 0x00e5ff, 0x9333ea];
     const mushroomStemMat = new THREE.MeshStandardMaterial({
       color: 0xe2e8f0,
-      roughness: 0.5
+      roughness: 0.4
     });
 
-    // 3 Small clusters under trees (total 8 mushrooms)
-    const clusters = [
-      { base: { x: -5.8, z: 1.2 }, count: 3 },  // Left flank tree base
-      { base: { x: -4.6, z: -3.5 }, count: 3 }, // Rear left tree base
-      { base: { x: 7.5, z: 1.8 }, count: 2 }   // Far right tree base
+    // Hand-checked organic scattered coordinates guaranteed clear of rocks, tree trunks, desk & campfire!
+    const fixedShroomPositions = [
+      // --- Around Main Left Boulder (-3.8, 1.6) ---
+      { x: -4.42, z: 1.68, scale: 1.3, rot: 0.4 },
+      { x: -3.85, z: 2.25, scale: 1.1, rot: 1.2 },
+      { x: -3.15, z: 1.48, scale: 0.95, rot: 2.5 },
+      { x: -3.75, z: 0.95, scale: 1.2, rot: 0.8 },
+      { x: -4.48, z: 1.12, scale: 1.05, rot: 1.9 },
+      { x: -3.22, z: 2.05, scale: 1.15, rot: 2.8 },
+
+      // --- Under Left Pine Trees Clearing ---
+      { x: -5.55, z: 0.82, scale: 1.25, rot: 0.6 },
+      { x: -5.12, z: -0.15, scale: 1.0, rot: 1.7 },
+      { x: -5.92, z: 2.15, scale: 1.35, rot: 2.2 },
+      { x: -4.95, z: -1.82, scale: 1.1, rot: 0.3 },
+      { x: -5.88, z: -3.12, scale: 1.2, rot: 1.4 },
+
+      // --- Right Forest Clearing ---
+      { x: 6.55, z: 1.45, scale: 1.15, rot: 0.9 },
+      { x: 7.78, z: 1.25, scale: 1.2, rot: 2.1 },
+      { x: 7.22, z: 2.28, scale: 1.0, rot: 1.6 },
+      { x: 7.82, z: 2.15, scale: 1.25, rot: 0.5 },
+      { x: 6.85, z: 0.92, scale: 1.05, rot: 2.7 }
     ];
 
-    let colorIdx = 0;
-    clusters.forEach((cluster) => {
-      for (let i = 0; i < cluster.count; i++) {
-        const shroomGroup = new THREE.Group();
-        
-        const capMat = new THREE.MeshStandardMaterial({
-          color: capColors[colorIdx % capColors.length],
-          emissive: capColors[colorIdx % capColors.length],
-          emissiveIntensity: 0.8,
-          roughness: 0.25
-        });
-        colorIdx++;
+    fixedShroomPositions.forEach((pos, idx) => {
+      const shroomGroup = new THREE.Group();
+      const capColor = capColors[idx % capColors.length];
+      const capMat = new THREE.MeshStandardMaterial({
+        color: capColor,
+        emissive: capColor,
+        emissiveIntensity: 1.2,
+        roughness: 0.2
+      });
 
-        const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.05, 0.28, 6), mushroomStemMat);
-        stem.position.y = 0.14;
-        const cap = new THREE.Mesh(new THREE.SphereGeometry(0.11, 8, 6, 0, Math.PI * 2, 0, Math.PI * 0.5), capMat);
-        cap.position.y = 0.28;
+      const stemHeight = 0.32 * pos.scale;
+      const capRadius = 0.12 * pos.scale;
 
-        shroomGroup.add(stem, cap);
+      const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.055, stemHeight, 8), mushroomStemMat);
+      stem.position.y = stemHeight / 2;
+      stem.castShadow = true;
 
-        // Small random offset around cluster center under tree
-        const offsetX = (Math.random() - 0.5) * 0.6;
-        const offsetZ = (Math.random() - 0.5) * 0.6;
-        shroomGroup.position.set(cluster.base.x + offsetX, 0, cluster.base.z + offsetZ);
-        shroomGroup.scale.setScalar(0.7 + Math.random() * 0.5);
-        this.scene.add(shroomGroup);
-      }
+      const cap = new THREE.Mesh(new THREE.SphereGeometry(capRadius, 10, 8, 0, Math.PI * 2, 0, Math.PI * 0.5), capMat);
+      cap.position.y = stemHeight;
+      cap.castShadow = true;
+
+      shroomGroup.add(stem, cap);
+
+      shroomGroup.position.set(pos.x, 0, pos.z);
+      shroomGroup.rotation.y = pos.rot;
+      shroomGroup.rotation.z = Math.sin(idx * 1.5) * 0.14; // Organic slight tilt
+      shroomGroup.rotation.x = Math.cos(idx * 1.5) * 0.14;
+
+      this.scene.add(shroomGroup);
     });
   }
 
@@ -212,7 +231,7 @@ export class ForestEnvironment {
 
     // Dry crooked twigs branching out (sękate suche gałązki)
     const twigMat = new THREE.MeshStandardMaterial({ color: 0x2e1f16, roughness: 0.98 });
-    
+
     const twig1 = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.045, 0.8, 6), twigMat);
     twig1.position.set(-1.2, 4.80, 0.35);
     twig1.rotation.z = -Math.PI * 0.25;

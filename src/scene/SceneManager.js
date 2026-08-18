@@ -83,7 +83,7 @@ export class SceneManager {
 
     // 7. Bioluminescent Mushroom Light under forest trees
     this.shroomLight = new THREE.PointLight(0x55ffdd, 2.2, 6);
-    this.shroomLight.position.set(-5.8, 0.5, 1.2);
+    this.shroomLight.position.set(-3.8, 0.5, 1.6);
     this.scene.add(this.shroomLight);
 
     // 8. Dedicated Warm Bookshelf Illumination
@@ -114,7 +114,7 @@ export class SceneManager {
 
   initPostProcessing() {
     this.composer = new EffectComposer(this.renderer);
-    
+
     this.renderPass = new RenderPass(this.scene, this.camera);
     this.composer.addPass(this.renderPass);
 
@@ -130,7 +130,7 @@ export class SceneManager {
     this.currentPixelIndex = (this.currentPixelIndex + 1) % this.pixelScales.length;
     const newSize = this.pixelScales[this.currentPixelIndex];
     this.pixelPass.setPixelSize(newSize);
-    
+
     if (newSize === 3) return 'TRYB: 16-BIT';
     return 'TRYB: CRISP HD';
   }
