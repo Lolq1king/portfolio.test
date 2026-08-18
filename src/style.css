@@ -442,12 +442,60 @@ html, body {
   flex: 1;
 }
 
-.bio-text {
+.status-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.status-skill-item {
+  background: #050811;
+  border: 2px solid #1e293b;
+  border-left: 4px solid var(--primary-cyan);
+  padding: 12px 14px;
+  box-shadow: 2px 2px 0 #000;
+  transition: all 0.2s ease;
+}
+
+.status-skill-item:hover {
+  border-color: var(--primary-gold);
+  border-left-color: var(--primary-gold);
+}
+
+.status-skill-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.skill-icon {
+  font-size: 18px;
+}
+
+.skill-title {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--primary-gold);
+  letter-spacing: 0.5px;
+  flex: 1;
+}
+
+.skill-stat {
   font-family: var(--font-terminal);
-  font-size: 20px;
+  font-size: 16px;
+  color: var(--primary-green);
+}
+
+.status-skill-desc {
+  font-family: var(--font-terminal);
+  font-size: 16px;
   line-height: 1.4;
   color: #cbd5e1;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 .stat-bars {

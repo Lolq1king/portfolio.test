@@ -70,14 +70,11 @@
           <button class="crt-tab-btn active" data-tab="status">
             <span class="tab-num">[1]</span> STATUS POSTACI
           </button>
-          <button class="crt-tab-btn" data-tab="projects">
-            <span class="tab-num">[2]</span> DZIENNIK ZADAŃ
-          </button>
           <button class="crt-tab-btn" data-tab="skills">
-            <span class="tab-num">[3]</span> RUNY UMIEJĘTNOŚCI
+            <span class="tab-num">[2]</span> KSIĘGA UMIEJĘTNOŚCI
           </button>
           <button class="crt-tab-btn" data-tab="contact">
-            <span class="tab-num">[4]</span> KRUK POCZTOWY
+            <span class="tab-num">[3]</span> KRUK POCZTOWY
           </button>
         </nav>
 
@@ -87,127 +84,87 @@
             <div class="character-card">
               <div class="avatar-frame">
                 <div class="pixel-avatar">🧙‍♂️</div>
-                <div class="class-title">CZARODZIEJ LOLQ</div>
+                <div class="class-title">CZARODZIEJ LOLQ (LVL 28)</div>
               </div>
               <div class="stats-container">
-                <h2 class="section-title">WŁAŚCICIEL PORTFOLIO</h2>
-                <p class="bio-text">
-                  Witaj w moich progach! Jestem Czarodziejem Lolq - adeptem sztuk programistycznych i magii front-endu. Fascynuje mnie tworzenie interaktywnych światów 3D w Three.js, nowoczesny JavaScript oraz projektowanie czystego kodu. Przemierzam mroczne ostępy technologii, by zgłębiać tajemnice kodu i tworzyć niezwykłe doświadczenia webowe.
-                </p>
-                <div class="stat-bars">
-                  <div class="stat-row">
-                    <span class="stat-name">CODE MANA (JS/TS):</span>
-                    <div class="progress-bar"><div class="bar-fill mana" style="width: 85%;"></div></div>
-                    <span class="stat-val">85/100</span>
+                <h2 class="section-title">OPIS GŁÓWNYCH UMIEJĘTNOŚCI CZARODZIEJA</h2>
+                <div class="status-skills-list">
+
+                  <div class="status-skill-item">
+                    <div class="status-skill-header">
+                      <span class="skill-icon">🤖</span>
+                      <span class="skill-title">PISANIE PROMPTÓW AI</span>
+                      <span class="skill-stat">100/100</span>
+                    </div>
+                    <p class="status-skill-desc">Mistrzowskie tworzenie zaawansowanych dyrektyw i inżynieria konwersacyjna z modelami AI. Umiejętność precyzyjnego kierowania sztuczną inteligencją do budowania złożonych aplikacji, refaktoryzacji kodu oraz szybkiego rozwiązywania trudnych problemów.</p>
+                    <div class="progress-bar"><div class="bar-fill mana" style="width: 100%;"></div></div>
                   </div>
-                  <div class="stat-row">
-                    <span class="stat-name">3D ILLUSION (Three.js):</span>
-                    <div class="progress-bar"><div class="bar-fill illusion" style="width: 75%;"></div></div>
-                    <span class="stat-val">75/100</span>
+
+                  <div class="status-skill-item">
+                    <div class="status-skill-header">
+                      <span class="skill-icon">🧘</span>
+                      <span class="skill-title">CIERPLIWOŚĆ</span>
+                      <span class="skill-stat">98/100</span>
+                    </div>
+                    <p class="status-skill-desc">Anielska cierpliwość i opanowanie podczas śledzenia błędów, dokładnej analizy logów systemowych oraz dopracowywania detali interfejsu. Spokój w najtrudniejszych momentach procesu deweloperskiego.</p>
+                    <div class="progress-bar"><div class="bar-fill health" style="width: 98%;"></div></div>
                   </div>
-                  <div class="stat-row">
-                    <span class="stat-name">DEBUGGING ENDURANCE:</span>
-                    <div class="progress-bar"><div class="bar-fill health" style="width: 90%;"></div></div>
-                    <span class="stat-val">90/100</span>
+
+                  <div class="status-skill-item">
+                    <div class="status-skill-header">
+                      <span class="skill-icon">🔮</span>
+                      <span class="skill-title">CHĘĆ DO POZNAWANIA I NAUKI</span>
+                      <span class="skill-stat">95/100</span>
+                    </div>
+                    <p class="status-skill-desc">Nieugaszony apetyt na nową wiedzę, pasja w odkrywaniu nieznanych technologii, frameworków oraz stałe podnoszenie swoich kwalifikacji i eksperymentowanie z innowacjami webowymi.</p>
+                    <div class="progress-bar"><div class="bar-fill illusion" style="width: 95%;"></div></div>
                   </div>
-                  <div class="stat-row">
-                    <span class="stat-name">REFRACTORING STAMINA:</span>
-                    <div class="progress-bar"><div class="bar-fill stamina" style="width: 80%;"></div></div>
-                    <span class="stat-val">80/100</span>
+
+                  <div class="status-skill-item">
+                    <div class="status-skill-header">
+                      <span class="skill-icon">🔥</span>
+                      <span class="skill-title">NIEBYWAŁA WYTRWAŁOŚĆ</span>
+                      <span class="skill-stat">100/100</span>
+                    </div>
+                    <p class="status-skill-desc">Żelazna wola i bezkompromisowa determinacja. Niezłomne pokonywanie wszelkich przeszkód programistycznych oraz konsekwentne doprowadzanie każdego wyzwania i projektu do perfekcyjnego końca.</p>
+                    <div class="progress-bar"><div class="bar-fill stamina" style="width: 100%;"></div></div>
                   </div>
+
                 </div>
               </div>
             </div>
           </section>
 
-          <!-- TAB 2: DZIENNIK ZADAŃ (PROJECTS) -->
-          <section id="tab-projects" class="crt-tab-content">
-            <h2 class="section-title">ZREALIZOWANE ZADANIA I PROJEKTY</h2>
-            <div class="projects-grid">
-              <div class="project-card">
-                <div class="project-header">
-                  <span class="project-badge">ZADANIE #01</span>
-                  <h3>Pixel Dark Fantasy Portfolio</h3>
-                </div>
-                <p class="project-desc">Trójwymiarowe portfolio w Three.js wykorzystujące shader post-processingu pixel-art, efekty mgły, świetliki i interaktywne biurko programisty.</p>
-                <div class="project-tech">
-                  <span class="tech-tag">Three.js</span>
-                  <span class="tech-tag">GLSL Shaders</span>
-                  <span class="tech-tag">Vite</span>
-                  <span class="tech-tag">JavaScript ES6</span>
-                </div>
-              </div>
-              <div class="project-card">
-                <div class="project-header">
-                  <span class="project-badge">ZADANIE #02</span>
-                  <h3>Retro Terminal Engine</h3>
-                </div>
-                <p class="project-desc">Interaktywny emulator terminala CRT stworzony na potrzeby przeglądania statusu postaci i dziennika zadań w stylu gier RPG z lat 90.</p>
-                <div class="project-tech">
-                  <span class="tech-tag">HTML5 / CSS3</span>
-                  <span class="tech-tag">Pixel Design</span>
-                  <span class="tech-tag">GSAP</span>
-                </div>
-              </div>
-              <div class="project-card">
-                <div class="project-header">
-                  <span class="project-badge">ZADANIE #03</span>
-                  <h3>Procedural Forest Generator</h3>
-                </div>
-                <p class="project-desc">Algorytmiczne generowanie lasu z oświetleniem punktowym i symulacją atmosfery dla silników przeglądarkowych.</p>
-                <div class="project-tech">
-                  <span class="tech-tag">Three.js</span>
-                  <span class="tech-tag">Procedural Math</span>
-                  <span class="tech-tag">Particles</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- TAB 3: RUNY UMIEJĘTNOŚCI (SKILLS) -->
+          <!-- TAB 2: KSIĘGA UMIEJĘTNOŚCI (SKILLS) -->
           <section id="tab-skills" class="crt-tab-content">
-            <h2 class="section-title">KSIĘGA UMIEJĘTNOŚCI & TECHNOLOGII</h2>
+            <h2 class="section-title">KSIĘGA UMIEJĘTNOŚCI CZARODZIEJA</h2>
             <div class="skills-grid">
               <div class="skill-rune">
-                <div class="rune-icon">📜</div>
+                <div class="rune-icon">🤖</div>
                 <div class="rune-info">
-                  <h4>JavaScript / ES6+</h4>
-                  <p>Mistrzowskie opanowanie asynchroniczności, obietnic i nowoczesnego składniowo kodu.</p>
+                  <h4>Pisanie Promptów AI</h4>
+                  <p>Precyzyjne formułowanie poleceń dla sztucznej inteligencji, inżynieria promptów, efektywna współpraca z modelami LLM i optymalizacja zadań.</p>
+                </div>
+              </div>
+              <div class="skill-rune">
+                <div class="rune-icon">🧘</div>
+                <div class="rune-info">
+                  <h4>Cierpliwość</h4>
+                  <p>Opanowanie przy analizie i poszukiwaniu błędów w kodzie, konsekwentne dążenie do celu bez pośpiechu oraz dbałość o każdy detal.</p>
                 </div>
               </div>
               <div class="skill-rune">
                 <div class="rune-icon">🔮</div>
                 <div class="rune-info">
-                  <h4>Three.js & WebGL</h4>
-                  <p>Kreacja scen 3D, oświetlenia, shaderów post-processingu i animacji cząsteczkowych.</p>
+                  <h4>Chęć do Poznawania i Nauki</h4>
+                  <p>Niegasnąca ciekawość technologiczna, gotowość do stałego odkrywania nowych narzędzi, bibliotek oraz rozwiązywania nieznanych problemów.</p>
                 </div>
               </div>
               <div class="skill-rune">
-                <div class="rune-icon">🛡️</div>
+                <div class="rune-icon">🔥</div>
                 <div class="rune-info">
-                  <h4>HTML5 & CSS3 Pixel-Art</h4>
-                  <p>Semantyczny kod, niestandardowe układy Flexbox/Grid i stylizacja retro CRT.</p>
-                </div>
-              </div>
-              <div class="skill-rune">
-                <div class="rune-icon">⚔️</div>
-                <div class="rune-info">
-                  <h4>Git & Systemy Wersjonowania</h4>
-                  <p>Śledzenie zmian, praca na gałęziach i kontrola historii w repozytoriach.</p>
-                </div>
-              </div>
-              <div class="skill-rune">
-                <div class="rune-icon">🧪</div>
-                <div class="rune-info">
-                  <h4>C++ / Zrozumienie Podstaw</h4>
-                  <p>Podstawowa znajomość struktur danych, zarządzania pamięcią i wskaźników.</p>
-                </div>
-              </div>
-              <div class="skill-rune">
-                <div class="rune-icon">⚡</div>
-                <div class="rune-info">
-                  <h4>Vite & Tools</h4>
-                  <p>Szybki bundling kodu, konfiguracja modułów i optymalizacja zasobów.</p>
+                  <h4>Niebywała Wytrwałość</h4>
+                  <p>Żelazna wola i determinacja. Niezłomne pokonywanie trudności programistycznych oraz doprowadzanie każdego projektu do perfekcyjnego końca.</p>
                 </div>
               </div>
             </div>
