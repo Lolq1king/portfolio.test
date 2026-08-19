@@ -318,7 +318,7 @@ export class ForestEnvironment {
 
     // Raycast Interaction Metadata for Running Shoes
     const shoeMetadata = {
-      id: 'running-shoes',
+      id: 'shoe',
       name: '👟 BUTY DO BIEGANIA (RUNNING SNEAKERS)',
       desc: 'Powiększone buty do biegów długodystansowych i przeszkodowych zawieszone na żółtych sznurówkach na suchej gałęzi sarny. Symbolizują sportową pasję, żelazną dyscyplinę oraz pokonywanie własnych granic przez Czarodzieja Lolq!',
       icon: '👟'
