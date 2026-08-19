@@ -1,3 +1,4 @@
+import { i18n } from './i18n.js';
 import * as THREE from 'three';
 
 export class RaycastInteraction {
@@ -82,8 +83,12 @@ export class RaycastInteraction {
   showTooltip(data, screenX, screenY) {
     if (!this.tooltipEl) return;
     this.tooltipIcon.textContent = data.icon || '🔮';
-    this.tooltipTitle.textContent = data.name || 'Przedmiot';
-    this.tooltipDesc.textContent = data.desc || '';
+    const nKey = data.id + '-name';
+    const nT = i18n.t(nKey);
+    this.tooltipTitle.textContent = (nT !== nKey ? nT : data.name) || i18n.t('tooltip-title');
+    const dKey = data.id + '-desc';
+    const dT = i18n.t(dKey);
+    this.tooltipDesc.textContent = (dT !== dKey ? dT : data.desc) || '';
     this.tooltipEl.classList.remove('hidden');
     this.updateTooltipPos(screenX, screenY);
   }

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { i18n } from '../utils/i18n.js';
 
 export class DeskObjectRegistry {
   constructor(scene, sceneManager) {
@@ -300,28 +301,28 @@ export class DeskObjectRegistry {
       this.sceneManager.scene.background.setHex(0x141f38);
       this.sceneManager.moonLight.color.setHex(0xcde0ff);
       this.sceneManager.ambientLight.color.setHex(0x7896d8);
-      return '🔮 Kolory Scenerii: Srebrzysta Noc Księżycowa';
+      return i18n.lang === 'en' ? '🔮 Scenery Colors: Silvery Moonlit Night' : '🔮 Kolory Scenerii: Srebrzysta Noc Księżycowa';
     } else if (this.atmosphereIndex === 1) {
       // 2. Crimson Blood Moon (Krwawy Zmierzch)
       this.sceneManager.scene.fog.color.setHex(0x3d1424);
       this.sceneManager.scene.background.setHex(0x280d17);
       this.sceneManager.moonLight.color.setHex(0xff5577);
       this.sceneManager.ambientLight.color.setHex(0x882844);
-      return '🔮 Kolory Scenerii: Krwawy Zmierzch';
+      return i18n.lang === 'en' ? '🔮 Scenery Colors: Crimson Blood Moon' : '🔮 Kolory Scenerii: Krwawy Zmierzch';
     } else if (this.atmosphereIndex === 2) {
       // 3. Deep Eldritch Emerald Mist (Szmaragdowa Mgła)
       this.sceneManager.scene.fog.color.setHex(0x12362c);
       this.sceneManager.scene.background.setHex(0x0c241d);
       this.sceneManager.moonLight.color.setHex(0x33ffe6);
       this.sceneManager.ambientLight.color.setHex(0x246654);
-      return '🔮 Kolory Scenerii: Szmaragdowa Mgła';
+      return i18n.lang === 'en' ? '🔮 Scenery Colors: Emerald Mist' : '🔮 Kolory Scenerii: Szmaragdowa Mgła';
     } else {
       // 4. Royal Violet Eclipse (Fioletowe Zaćmienie)
       this.sceneManager.scene.fog.color.setHex(0x2c1540);
       this.sceneManager.scene.background.setHex(0x1e0e2c);
       this.sceneManager.moonLight.color.setHex(0xc877ff);
       this.sceneManager.ambientLight.color.setHex(0x602b85);
-      return '🔮 Kolory Scenerii: Fioletowe Zaćmienie';
+      return i18n.lang === 'en' ? '🔮 Scenery Colors: Violet Eclipse' : '🔮 Kolory Scenerii: Fioletowe Zaćmienie';
     }
   }
 

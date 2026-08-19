@@ -11,6 +11,7 @@ import { CameraController } from './utils/CameraController.js';
 import { RaycastInteraction } from './utils/RaycastInteraction.js';
 import { TerminalUI } from './ui/TerminalUI.js';
 import { AudioController } from './ui/AudioController.js';
+import { i18n } from './utils/i18n.js';
 
 class Application {
   constructor() {
@@ -69,11 +70,11 @@ class Application {
         // 1st click: Zoom camera directly to central CRT monitor screen
         this.cameraController.zoomToMonitor();
         const cameraLabel = document.getElementById('camera-view-label');
-        if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: EKRAN LOGOWANIA CRT';
+        if (cameraLabel) cameraLabel.textContent = i18n.t('btn-camera-crt');
 
         const toast = document.getElementById('instruction-toast');
         if (toast) {
-          toast.querySelector('p span').textContent = 'Przybliżono na Ekran Logowania CRT! Kliknij w przycisk [ 🔑 ZALOGUJ SIĘ ], aby otworzyć Terminal Czarodzieja.';
+          toast.querySelector('p span').textContent = i18n.t('toast-zoom-crt');
         }
       } else {
         // 2nd click (while zoomed in): Enter wizard terminal modal!
@@ -84,12 +85,12 @@ class Application {
         // Re-clicking left monitor while zoomed in returns camera back to initial overview state!
         this.cameraController.zoomToOverview();
         const cameraLabel = document.getElementById('camera-view-label');
-        if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: LAS';
+        if (cameraLabel) cameraLabel.textContent = i18n.t('btn-camera-las');
       } else {
         // Zoom camera directly to left gaming monitor
         this.cameraController.zoomToLeftMonitor();
         const cameraLabel = document.getElementById('camera-view-label');
-        if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: MONITOR WARZONE';
+        if (cameraLabel) cameraLabel.textContent = i18n.t('btn-camera-warzone');
       }
     } else if (
       data.id === 'bookshelf-frame' ||
@@ -103,11 +104,11 @@ class Application {
       // If camera is not yet zoomed in to the bookshelf, first zoom in!
       if (this.cameraController.mode !== 'bookshelf') {
         this.cameraController.zoomToBookshelf();
-        if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: BIBLIOTECZKA';
+        if (cameraLabel) cameraLabel.textContent = i18n.t('btn-camera-book');
         
         const toast = document.getElementById('instruction-toast');
         if (toast) {
-          toast.querySelector('p span').textContent = 'Przybliżono widok na Bibliotekę Czarodzieja! Kliknij w książkę, aby zobaczyć opis, lub ponownie w regał, aby wrócić.';
+          toast.querySelector('p span').textContent = i18n.t('toast-zoom-book');
         }
       } else {
         // If already in bookshelf close-up mode:
@@ -117,11 +118,11 @@ class Application {
         } else {
           // Clicking the bookshelf frame, header or shelf tag zooms back out to overview mode!
           this.cameraController.zoomToOverview();
-          if (cameraLabel) cameraLabel.textContent = 'SKUPIENIE: LAS';
+          if (cameraLabel) cameraLabel.textContent = i18n.t('btn-camera-las');
 
           const toast = document.getElementById('instruction-toast');
           if (toast) {
-            toast.querySelector('p span').textContent = 'Powrócono do pełnego widoku panoramy lasu.';
+            toast.querySelector('p span').textContent = i18n.t('toast-zoom-out');
           }
         }
       }
@@ -141,6 +142,18 @@ class Application {
   }
 
   initHUDControls() {
+    // Language Toggle Button
+    const btnLang = document.getElementById('btn-toggle-lang');
+    const langLabel = document.getElementById('lang-label');
+    if (btnLang && langLabel) {
+      langLabel.textContent = i18n.lang.toUpperCase();
+      btnLang.addEventListener('click', () => {
+        i18n.toggleLang();
+        langLabel.textContent = i18n.lang.toUpperCase();
+      });
+    }
+    i18n.updateDOM();
+
     // Pixel Scale Toggle Button
     const btnPixel = document.getElementById('btn-toggle-pixel');
     const pixelLabel = document.getElementById('pixel-scale-label');
@@ -165,19 +178,19 @@ class Application {
         const toast = document.getElementById('instruction-toast');
 
         if (newMode === 'monitor') {
-          cameraLabel.textContent = 'SKUPIENIE: EKRAN LOGOWANIA CRT';
+          cameraLabel.textContent = i18n.t('btn-camera-crt');
           if (toast) {
-            toast.querySelector('p span').textContent = 'Przybliżono na Ekran Logowania CRT! Kliknij w przycisk [ 🔑 ZALOGUJ SIĘ ], aby otworzyć Terminal Czarodzieja.';
+            toast.querySelector('p span').textContent = i18n.t('toast-zoom-crt');
           }
         } else if (newMode === 'bookshelf') {
-          cameraLabel.textContent = 'SKUPIENIE: BIBLIOTECZKA';
+          cameraLabel.textContent = i18n.t('btn-camera-book');
           if (toast) {
-            toast.querySelector('p span').textContent = 'Przybliżono widok na Bibliotekę Czarodzieja! Kliknij w książkę, aby zobaczyć opis.';
+            toast.querySelector('p span').textContent = i18n.t('toast-zoom-book');
           }
         } else {
-          cameraLabel.textContent = 'SKUPIENIE: LAS';
+          cameraLabel.textContent = i18n.t('btn-camera-las');
           if (toast) {
-            toast.querySelector('p span').textContent = 'Powrócono do pełnego widoku panoramy lasu.';
+            toast.querySelector('p span').textContent = i18n.t('toast-zoom-out');
           }
         }
       });

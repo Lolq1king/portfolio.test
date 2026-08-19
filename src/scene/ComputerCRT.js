@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { i18n } from '../utils/i18n.js';
 
 export class ComputerCRT {
   constructor(scene) {
@@ -90,20 +91,20 @@ export class ComputerCRT {
     const screenGeo = new THREE.PlaneGeometry(1.15, 0.85);
 
     // Procedural Phosphor CRT Dark Fantasy Login Screen Canvas
-    const canvas = document.createElement('canvas');
-    canvas.width = 512;
-    canvas.height = 384;
-    const ctx = canvas.getContext('2d');
+    this.canvas = document.createElement('canvas');
+    this.canvas.width = 512;
+    this.canvas.height = 384;
+    this.ctx = this.canvas.getContext('2d');
     
-    this.drawDarkFantasyLoginScreen(ctx, 512, 384);
+    this.drawDarkFantasyLoginScreen();
 
-    const screenTexture = new THREE.CanvasTexture(canvas);
-    screenTexture.magFilter = THREE.NearestFilter;
-    screenTexture.minFilter = THREE.NearestFilter;
+    this.screenTexture = new THREE.CanvasTexture(this.canvas);
+    this.screenTexture.magFilter = THREE.NearestFilter;
+    this.screenTexture.minFilter = THREE.NearestFilter;
 
     const screenMat = new THREE.MeshStandardMaterial({
-      map: screenTexture,
-      emissiveMap: screenTexture,
+      map: this.screenTexture,
+      emissiveMap: this.screenTexture,
       emissive: 0xffffff,
       emissiveIntensity: 0.8,
       roughness: 0.2
@@ -122,6 +123,12 @@ export class ComputerCRT {
 
     monitorGroup.add(this.screenMesh);
     this.interactiveObjects.push(this.screenMesh);
+
+    // Bind i18n change event
+    i18n.addListener(() => {
+      this.drawDarkFantasyLoginScreen();
+      this.screenTexture.needsUpdate = true;
+    });
 
     this.group.add(monitorGroup);
   }
@@ -217,7 +224,10 @@ export class ComputerCRT {
     this.group.add(mouse);
   }
 
-  drawDarkFantasyLoginScreen(ctx, width, height) {
+  drawDarkFantasyLoginScreen() {
+    const ctx = this.ctx;
+    const width = this.canvas.width;
+    const height = this.canvas.height;
     // 1. Dark Gothic Radial Gradient Background
     const bgGrad = ctx.createRadialGradient(width / 2, height / 2, 40, width / 2, height / 2, width * 0.7);
     bgGrad.addColorStop(0, '#1c0b2b'); // Deep warlock purple core
@@ -287,7 +297,7 @@ export class ComputerCRT {
     // --- Input Field 1: UŻYTKOWNIK ---
     ctx.fillStyle = '#c084fc';
     ctx.font = 'bold 12px monospace';
-    ctx.fillText('🔮 UŻYTKOWNIK (USERNAME):', boxX + 24, boxY + 32);
+    ctx.fillText(i18n.t('crt-canvas-user'), boxX + 24, boxY + 32);
 
     // Field 1 Box
     ctx.fillStyle = '#020617';
@@ -302,7 +312,7 @@ export class ComputerCRT {
     // --- Input Field 2: HASŁO ASTRALNE ---
     ctx.fillStyle = '#f59e0b';
     ctx.font = 'bold 12px monospace';
-    ctx.fillText('🔑 HASŁO ASTRALNE (ANCIENT RUNES):', boxX + 24, boxY + 98);
+    ctx.fillText(i18n.t('crt-canvas-pass'), boxX + 24, boxY + 98);
 
     // Field 2 Box
     ctx.fillStyle = '#020617';
@@ -334,12 +344,12 @@ export class ComputerCRT {
     ctx.textAlign = 'center';
     ctx.fillStyle = '#ffffff';
     ctx.font = 'bold 13px monospace';
-    ctx.fillText('🔑 [ ZALOGUJ SIĘ DO TERMINALA ] ▶', width / 2, btnY + 25);
+    ctx.fillText(i18n.t('crt-canvas-login'), width / 2, btnY + 25);
 
     // 5. Bottom Interactive Prompt
     ctx.fillStyle = '#38bdf8';
     ctx.font = 'bold 12px monospace';
-    ctx.fillText('KLIKNIJ PRZYCISK ZALOGUJ, ABY OTWORZYĆ SYSTEM', width / 2, height - 26);
+    ctx.fillText(i18n.t('crt-canvas-hint'), width / 2, height - 26);
 
     // 6. Scanlines Overlay
     ctx.fillStyle = 'rgba(0, 0, 0, 0.22)';

@@ -22,18 +22,21 @@
     <!-- Top HUD Navigation -->
     <header class="hud-header">
       <div class="hud-title-box">
-        <span class="hud-badge">LVL 28 CZARODZIEJ</span>
-        <h1 class="hud-title">PORTFOLIO CZARODZIEJA LOLQ</h1>
+        <span class="hud-badge" data-i18n="hud-badge">LVL 28 CZARODZIEJ</span>
+        <h1 class="hud-title" data-i18n="hud-title">PORTFOLIO CZARODZIEJA LOLQ</h1>
       </div>
       <div class="hud-controls">
+        <button id="btn-toggle-lang" class="hud-btn" title="Zmień język / Change language">
+          <span class="btn-icon">🌍</span> <span id="lang-label">EN</span>
+        </button>
         <button id="btn-toggle-pixel" class="hud-btn" title="Tryb wysokiej rozdzielczości Crisp HD">
-          <span class="btn-icon">✨</span> <span id="pixel-scale-label">TRYB: CRISP HD</span>
+          <span class="btn-icon">✨</span> <span id="pixel-scale-label" data-i18n="btn-pixel">TRYB: CRISP HD</span>
         </button>
         <button id="btn-toggle-audio" class="hud-btn" title="Włącz/Wyłącz dźwięk otoczenia">
-          <span class="btn-icon" id="audio-icon">🔇</span> <span id="audio-label">AUDIO: OFF</span>
+          <span class="btn-icon" id="audio-icon">🔇</span> <span id="audio-label" data-i18n="btn-audio-off">AUDIO: OFF</span>
         </button>
         <button id="btn-camera-view" class="hud-btn highlight" title="Przełącz widok kamery">
-          <span class="btn-icon">👁️</span> <span id="camera-view-label">SKUPIENIE: LAS</span>
+          <span class="btn-icon">👁️</span> <span id="camera-view-label" data-i18n="btn-camera-las">SKUPIENIE: LAS</span>
         </button>
       </div>
     </header>
@@ -42,15 +45,15 @@
     <div id="object-tooltip" class="pixel-tooltip hidden">
       <div class="tooltip-header">
         <span id="tooltip-icon">🔮</span>
-        <span id="tooltip-title">Przedmiot</span>
+        <span id="tooltip-title" data-i18n="tooltip-title">Przedmiot</span>
       </div>
-      <div id="tooltip-desc" class="tooltip-body">Kliknij, aby zbadać.</div>
-      <div class="tooltip-hint">[ Kliknij myszką ]</div>
+      <div id="tooltip-desc" class="tooltip-body" data-i18n="tooltip-desc">Kliknij, aby zbadać.</div>
+      <div class="tooltip-hint" data-i18n="tooltip-hint">[ Kliknij myszką ]</div>
     </div>
 
     <!-- Instruction Hint Toast at bottom -->
     <div id="instruction-toast" class="instruction-toast">
-      <p>🌲 <span>Przesuwaj myszą, aby rozglądać się po mrocznym lesie Czarodzieja Lolq. Klikaj przedmioty, aby je zbadać!</span></p>
+      <p>🌲 <span data-i18n="toast-intro">Przesuwaj myszą, aby rozglądać się po mrocznym lesie Czarodzieja Lolq. Klikaj przedmioty, aby je zbadać!</span></p>
     </div>
 
     <!-- CRT Computer Terminal Modal -->
@@ -60,20 +63,20 @@
         <div class="crt-glow"></div>
         
         <div class="crt-header">
-          <div class="crt-system-info">
+          <div class="crt-system-info" data-i18n="crt-sys-info" data-keep-icon-start="<span class='crt-blinking-dot'>●</span>">
             <span class="crt-blinking-dot">●</span> LOLQ OS v1.0.4 - [TERMINAL CZARODZIEJA LOLQ]
           </div>
-          <button id="btn-close-crt" class="crt-close-btn" title="Zamknij Terminal (ESC)">[ X ] ZAMKNIJ</button>
+          <button id="btn-close-crt" class="crt-close-btn" title="Zamknij Terminal (ESC)" data-i18n="crt-close">[ X ] ZAMKNIJ</button>
         </div>
 
         <nav class="crt-nav">
-          <button class="crt-tab-btn active" data-tab="status">
+          <button class="crt-tab-btn active" data-tab="status" data-i18n="crt-tab-1" data-keep-icon-start="<span class='tab-num'>[1]</span>">
             <span class="tab-num">[1]</span> STATUS POSTACI
           </button>
-          <button class="crt-tab-btn" data-tab="skills">
+          <button class="crt-tab-btn" data-tab="skills" data-i18n="crt-tab-2" data-keep-icon-start="<span class='tab-num'>[2]</span>">
             <span class="tab-num">[2]</span> KSIĘGA UMIEJĘTNOŚCI
           </button>
-          <button class="crt-tab-btn" data-tab="contact">
+          <button class="crt-tab-btn" data-tab="contact" data-i18n="crt-tab-3" data-keep-icon-start="<span class='tab-num'>[3]</span>">
             <span class="tab-num">[3]</span> KRUK POCZTOWY
           </button>
         </nav>
@@ -84,49 +87,49 @@
             <div class="character-card">
               <div class="avatar-frame">
                 <div class="pixel-avatar">🧙‍♂️</div>
-                <div class="class-title">CZARODZIEJ LOLQ (LVL 28)</div>
+                <div class="class-title" data-i18n="status-class">CZARODZIEJ LOLQ (LVL 28)</div>
               </div>
               <div class="stats-container">
-                <h2 class="section-title">OPIS GŁÓWNYCH UMIEJĘTNOŚCI CZARODZIEJA</h2>
+                <h2 class="section-title" data-i18n="status-title">OPIS GŁÓWNYCH UMIEJĘTNOŚCI CZARODZIEJA</h2>
                 <div class="status-skills-list">
 
                   <div class="status-skill-item">
                     <div class="status-skill-header">
                       <span class="skill-icon">🤖</span>
-                      <span class="skill-title">PISANIE PROMPTÓW AI</span>
+                      <span class="skill-title" data-i18n="skill-1-title">PISANIE PROMPTÓW AI</span>
                       <span class="skill-stat">100/100</span>
                     </div>
-                    <p class="status-skill-desc">Mistrzowskie tworzenie zaawansowanych dyrektyw i inżynieria konwersacyjna z modelami AI. Umiejętność precyzyjnego kierowania sztuczną inteligencją do budowania złożonych aplikacji, refaktoryzacji kodu oraz szybkiego rozwiązywania trudnych problemów.</p>
+                    <p class="status-skill-desc" data-i18n="skill-1-desc">Mistrzowskie tworzenie zaawansowanych dyrektyw i inżynieria konwersacyjna z modelami AI. Umiejętność precyzyjnego kierowania sztuczną inteligencją do budowania złożonych aplikacji, refaktoryzacji kodu oraz szybkiego rozwiązywania trudnych problemów.</p>
                     <div class="progress-bar"><div class="bar-fill mana" style="width: 100%;"></div></div>
                   </div>
 
                   <div class="status-skill-item">
                     <div class="status-skill-header">
                       <span class="skill-icon">🧘</span>
-                      <span class="skill-title">CIERPLIWOŚĆ</span>
+                      <span class="skill-title" data-i18n="skill-2-title">CIERPLIWOŚĆ</span>
                       <span class="skill-stat">98/100</span>
                     </div>
-                    <p class="status-skill-desc">Anielska cierpliwość i opanowanie podczas śledzenia błędów, dokładnej analizy logów systemowych oraz dopracowywania detali interfejsu. Spokój w najtrudniejszych momentach procesu deweloperskiego.</p>
+                    <p class="status-skill-desc" data-i18n="skill-2-desc">Anielska cierpliwość i opanowanie podczas śledzenia błędów, dokładnej analizy logów systemowych oraz dopracowywania detali interfejsu. Spokój w najtrudniejszych momentach procesu deweloperskiego.</p>
                     <div class="progress-bar"><div class="bar-fill health" style="width: 98%;"></div></div>
                   </div>
 
                   <div class="status-skill-item">
                     <div class="status-skill-header">
                       <span class="skill-icon">🔮</span>
-                      <span class="skill-title">CHĘĆ DO POZNAWANIA I NAUKI</span>
+                      <span class="skill-title" data-i18n="skill-3-title">CHĘĆ DO POZNAWANIA I NAUKI</span>
                       <span class="skill-stat">95/100</span>
                     </div>
-                    <p class="status-skill-desc">Nieugaszony apetyt na nową wiedzę, pasja w odkrywaniu nieznanych technologii, frameworków oraz stałe podnoszenie swoich kwalifikacji i eksperymentowanie z innowacjami webowymi.</p>
+                    <p class="status-skill-desc" data-i18n="skill-3-desc">Nieugaszony apetyt na nową wiedzę, pasja w odkrywaniu nieznanych technologii, frameworków oraz stałe podnoszenie swoich kwalifikacji i eksperymentowanie z innowacjami webowymi.</p>
                     <div class="progress-bar"><div class="bar-fill illusion" style="width: 95%;"></div></div>
                   </div>
 
                   <div class="status-skill-item">
                     <div class="status-skill-header">
                       <span class="skill-icon">🔥</span>
-                      <span class="skill-title">NIEBYWAŁA WYTRWAŁOŚĆ</span>
+                      <span class="skill-title" data-i18n="skill-4-title">NIEBYWAŁA WYTRWAŁOŚĆ</span>
                       <span class="skill-stat">100/100</span>
                     </div>
-                    <p class="status-skill-desc">Żelazna wola i bezkompromisowa determinacja. Niezłomne pokonywanie wszelkich przeszkód programistycznych oraz konsekwentne doprowadzanie każdego wyzwania i projektu do perfekcyjnego końca.</p>
+                    <p class="status-skill-desc" data-i18n="skill-4-desc">Żelazna wola i bezkompromisowa determinacja. Niezłomne pokonywanie wszelkich przeszkód programistycznych oraz konsekwentne doprowadzanie każdego wyzwania i projektu do perfekcyjnego końca.</p>
                     <div class="progress-bar"><div class="bar-fill stamina" style="width: 100%;"></div></div>
                   </div>
 
@@ -137,34 +140,34 @@
 
           <!-- TAB 2: KSIĘGA UMIEJĘTNOŚCI (SKILLS) -->
           <section id="tab-skills" class="crt-tab-content">
-            <h2 class="section-title">KSIĘGA UMIEJĘTNOŚCI CZARODZIEJA</h2>
+            <h2 class="section-title" data-i18n="skills-title">KSIĘGA UMIEJĘTNOŚCI CZARODZIEJA</h2>
             <div class="skills-grid">
               <div class="skill-rune">
                 <div class="rune-icon">🤖</div>
                 <div class="rune-info">
                   <h4>Pisanie Promptów AI</h4>
-                  <p>Precyzyjne formułowanie poleceń dla sztucznej inteligencji, inżynieria promptów, efektywna współpraca z modelami LLM i optymalizacja zadań.</p>
+                  <p data-i18n="skill-rune-1-desc">Precyzyjne formułowanie poleceń dla sztucznej inteligencji, inżynieria promptów, efektywna współpraca z modelami LLM i optymalizacja zadań.</p>
                 </div>
               </div>
               <div class="skill-rune">
                 <div class="rune-icon">🧘</div>
                 <div class="rune-info">
                   <h4>Cierpliwość</h4>
-                  <p>Opanowanie przy analizie i poszukiwaniu błędów w kodzie, konsekwentne dążenie do celu bez pośpiechu oraz dbałość o każdy detal.</p>
+                  <p data-i18n="skill-rune-2-desc">Opanowanie przy analizie i poszukiwaniu błędów w kodzie, konsekwentne dążenie do celu bez pośpiechu oraz dbałość o każdy detal.</p>
                 </div>
               </div>
               <div class="skill-rune">
                 <div class="rune-icon">🔮</div>
                 <div class="rune-info">
                   <h4>Chęć do Poznawania i Nauki</h4>
-                  <p>Niegasnąca ciekawość technologiczna, gotowość do stałego odkrywania nowych narzędzi, bibliotek oraz rozwiązywania nieznanych problemów.</p>
+                  <p data-i18n="skill-rune-3-desc">Niegasnąca ciekawość technologiczna, gotowość do stałego odkrywania nowych narzędzi, bibliotek oraz rozwiązywania nieznanych problemów.</p>
                 </div>
               </div>
               <div class="skill-rune">
                 <div class="rune-icon">🔥</div>
                 <div class="rune-info">
                   <h4>Niebywała Wytrwałość</h4>
-                  <p>Żelazna wola i determinacja. Niezłomne pokonywanie trudności programistycznych oraz doprowadzanie każdego projektu do perfekcyjnego końca.</p>
+                  <p data-i18n="skill-rune-4-desc">Żelazna wola i determinacja. Niezłomne pokonywanie trudności programistycznych oraz doprowadzanie każdego projektu do perfekcyjnego końca.</p>
                 </div>
               </div>
             </div>
@@ -172,19 +175,19 @@
 
           <!-- TAB 3: KRUK POCZTOWY (KONTAKT) -->
           <section id="tab-contact" class="crt-tab-content">
-            <h2 class="section-title">WYŚLIJ KRUKA POCZTOWEGO (KONTAKT)</h2>
+            <h2 class="section-title" data-i18n="contact-title">WYŚLIJ KRUKA POCZTOWEGO (KONTAKT)</h2>
             <form id="contact-form" class="pixel-form">
               <div class="form-group">
-                <label for="sender-name">TWOJE IMIĘ / ALIAS:</label>
-                <input type="text" id="sender-name" required placeholder="Wpisz imię wędrowca..." />
+                <label for="sender-name" data-i18n="contact-label-1">TWOJE IMIĘ / ALIAS:</label>
+                <input type="text" id="sender-name" required data-i18n="contact-placeholder-1" placeholder="Wpisz imię wędrowca..." />
               </div>
               <div class="form-group">
-                <label for="sender-email">TWÓJ EMAIL / ADRES GOŁĘBIA:</label>
+                <label for="sender-email" data-i18n="contact-label-2">TWÓJ EMAIL / ADRES GOŁĘBIA:</label>
                 <input type="email" id="sender-email" required placeholder="name@domain.com" />
               </div>
               <div class="form-group">
-                <label for="sender-msg">TREŚĆ WIADOMOŚCI:</label>
-                <textarea id="sender-msg" rows="4" required placeholder="Napisz swoją wiadomość do programisty..."></textarea>
+                <label for="sender-msg" data-i18n="contact-label-3">TREŚĆ WIADOMOŚCI:</label>
+                <textarea id="sender-msg" rows="4" required data-i18n="contact-placeholder-3" placeholder="Napisz swoją wiadomość do programisty..."></textarea>
               </div>
               <div id="contact-status-msg" class="contact-status-msg hidden"></div>
               <button type="submit" id="btn-send-raven" class="crt-btn-submit">
@@ -195,9 +198,9 @@
         </div>
 
         <div class="crt-footer">
-          <span>[UP/DOWN] Nawigacja</span>
-          <span>[TAB] Zmień Zakładkę</span>
-          <span>SYSTEM READY.</span>
+          <span data-i18n="crt-footer-1">[UP/DOWN] Nawigacja</span>
+          <span data-i18n="crt-footer-2">[TAB] Zmień Zakładkę</span>
+          <span data-i18n="crt-footer-3">SYSTEM READY.</span>
         </div>
       </div>
     </div>
